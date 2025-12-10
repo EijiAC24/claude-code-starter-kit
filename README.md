@@ -318,4 +318,18 @@ Claude が自動で適切なルールを選択しますが、参考までに：
 
 ## License
 
-MIT
+MIT License - 自由に使用・改変・再配布できます。
+
+詳細は [LICENSE](./LICENSE) を参照。
+
+## Contributing
+
+Issue や Pull Request 歓迎です！
+
+- バグ報告: [Issues](https://github.com/EijiAC24/claude-code-starter-kit/issues)
+- 改善提案: Issue または PR で
+- 新しいルール追加: `.claude/rules/` に追加して PR
+
+## Author
+
+**EijiAC24** - [GitHub](https://github.com/EijiAC24)
