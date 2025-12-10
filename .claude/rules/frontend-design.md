@@ -4,57 +4,87 @@ paths: src/**/*.{tsx,jsx}, **/*.css, **/*.scss, **/*.module.css
 
 # Frontend Design Guidelines
 
-> Avoid generic "AI slop" aesthetics. Create distinctive, polished interfaces.
+> Based on modern design systems, accessibility standards, and React best practices for 2025.
 
-## Typography
+## Design Philosophy
 
-### Avoid Default Choices
-❌ Inter, Roboto, Open Sans (overused)
-✅ Distinctive alternatives:
-- **Headlines**: Bricolage Grotesque, Space Grotesk, Manrope
-- **Body**: Source Sans 3, IBM Plex Sans, Nunito
-- **Monospace**: JetBrains Mono, Fira Code, Berkeley Mono
-
-### Typography Scale
-Use consistent ratios (1.25 or 1.333):
-```css
-:root {
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.875rem;  /* 30px */
-  --text-4xl: 2.25rem;   /* 36px */
-}
-```
-
-### Line Height & Spacing
-- Body text: `line-height: 1.5-1.7`
-- Headings: `line-height: 1.1-1.3`
-- Paragraph spacing: `margin-bottom: 1em`
+- **Consistency** - Use design tokens, not magic numbers
+- **Accessibility** - WCAG 2.1 AA minimum
+- **Performance** - Optimize for Core Web Vitals
+- **Maintainability** - Component-driven architecture
 
 ---
 
-## Color
+## Typography
 
-### Avoid Clichés
-❌ Purple-to-blue gradients, pure black backgrounds
-✅ Distinctive palettes:
-- Warm neutrals with accent colors
-- Muted, sophisticated tones
-- High-contrast with intentional accent
+### Avoid Generic Fonts
+```css
+/* AVOID: Overused fonts */
+font-family: 'Inter', 'Roboto', 'Open Sans', sans-serif;
 
-### Color System Structure
+/* BETTER: Distinctive alternatives */
+/* Headlines */
+font-family: 'Space Grotesk', 'Manrope', 'Bricolage Grotesque', sans-serif;
+
+/* Body */
+font-family: 'Source Sans 3', 'IBM Plex Sans', 'Nunito', sans-serif;
+
+/* Monospace */
+font-family: 'JetBrains Mono', 'Fira Code', 'Berkeley Mono', monospace;
+```
+
+### Typography Scale (1.25 ratio)
 ```css
 :root {
-  /* Semantic colors */
+  /* Font sizes */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+```
+
+### Usage Guidelines
+- Body text: `--text-base` with `--leading-relaxed`
+- Headings: `--leading-tight` to `--leading-snug`
+- Minimum touch target: 44px × 44px
+- Minimum readable font size: 14px (16px preferred)
+
+---
+
+## Color System
+
+### Semantic Color Tokens
+```css
+:root {
+  /* Brand colors */
   --color-primary: #2563eb;
-  --color-secondary: #64748b;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-active: #1e40af;
+
+  /* Semantic colors */
   --color-success: #16a34a;
   --color-warning: #ca8a04;
   --color-error: #dc2626;
+  --color-info: #0891b2;
 
   /* Neutral scale */
   --gray-50: #f8fafc;
@@ -67,61 +97,138 @@ Use consistent ratios (1.25 or 1.333):
   --gray-700: #334155;
   --gray-800: #1e293b;
   --gray-900: #0f172a;
+  --gray-950: #020617;
+
+  /* Contextual */
+  --color-background: var(--gray-50);
+  --color-surface: white;
+  --color-text-primary: var(--gray-900);
+  --color-text-secondary: var(--gray-600);
+  --color-text-muted: var(--gray-400);
+  --color-border: var(--gray-200);
 }
 ```
 
-### Accessibility
-- Minimum contrast ratio: 4.5:1 (normal text), 3:1 (large text)
-- Don't rely on color alone for information
-- Test with color blindness simulators
+### Dark Mode
+```css
+[data-theme='dark'] {
+  --color-background: var(--gray-950);
+  --color-surface: var(--gray-900);
+  --color-text-primary: var(--gray-50);
+  --color-text-secondary: var(--gray-400);
+  --color-text-muted: var(--gray-500);
+  --color-border: var(--gray-800);
+}
+```
+
+### Accessibility Contrast
+| Text Type | Minimum Ratio |
+|-----------|---------------|
+| Normal text (< 18px) | 4.5:1 |
+| Large text (≥ 18px bold, ≥ 24px) | 3:1 |
+| UI components | 3:1 |
+| Focus indicators | 3:1 |
+
+---
+
+## Spacing System
+
+### 4px Base Scale
+```css
+:root {
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0.5: 0.125rem;  /* 2px */
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+  --space-16: 4rem;       /* 64px */
+  --space-20: 5rem;       /* 80px */
+  --space-24: 6rem;       /* 96px */
+}
+```
+
+### Spacing Usage
+| Context | Recommended |
+|---------|-------------|
+| Inline elements | `--space-1` to `--space-2` |
+| Form fields gap | `--space-3` to `--space-4` |
+| Card padding | `--space-4` to `--space-6` |
+| Section spacing | `--space-8` to `--space-16` |
+| Page margins | `--space-4` to `--space-8` |
 
 ---
 
 ## Layout
 
-### Spacing System
-Use consistent spacing scale (4px base):
-```css
-:root {
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-}
-```
-
-### Container Width
+### Container
 ```css
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1280px;
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
 
-/* Responsive */
-@media (min-width: 640px) { .container { max-width: 640px; } }
-@media (min-width: 768px) { .container { max-width: 768px; } }
-@media (min-width: 1024px) { .container { max-width: 1024px; } }
-@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 640px) {
+  .container { padding-inline: var(--space-6); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding-inline: var(--space-8); }
+}
+```
+
+### Responsive Breakpoints
+```css
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+```
+
+### Grid System
+```css
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Auto-fit responsive grid */
+.grid-auto {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
 ```
 
 ---
 
 ## Motion & Animation
 
-### Principles
-- Use motion purposefully (not decoratively)
-- Keep durations short: 150-300ms for UI, 300-500ms for emphasis
-- Prefer `transform` and `opacity` (GPU-accelerated)
-- Respect `prefers-reduced-motion`
-
-### Standard Easings
+### Timing Tokens
 ```css
 :root {
+  /* Durations */
+  --duration-instant: 50ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  /* Easings */
+  --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -129,7 +236,16 @@ Use consistent spacing scale (4px base):
 }
 ```
 
-### Common Patterns
+### Usage Guidelines
+| Interaction | Duration | Easing |
+|-------------|----------|--------|
+| Button hover/active | 150ms | ease-out |
+| Modal open/close | 250ms | ease-out |
+| Page transitions | 300-400ms | ease-in-out |
+| Micro-interactions | 150ms | ease-out |
+| Loading spinners | 1000ms+ | linear |
+
+### Common Animations
 ```css
 /* Fade in */
 @keyframes fadeIn {
@@ -139,23 +255,44 @@ Use consistent spacing scale (4px base):
 
 /* Slide up */
 @keyframes slideUp {
-  from { transform: translateY(10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Scale */
-.button:hover {
-  transform: scale(1.02);
-  transition: transform 150ms var(--ease-out);
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 ```
 
 ### Reduced Motion
 ```css
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 ```
@@ -164,7 +301,7 @@ Use consistent spacing scale (4px base):
 
 ## Component Patterns
 
-### Buttons
+### Button
 ```css
 .button {
   display: inline-flex;
@@ -172,64 +309,304 @@ Use consistent spacing scale (4px base):
   justify-content: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
+  min-height: 44px; /* Touch target */
+  border: none;
   border-radius: 0.375rem;
-  font-weight: 500;
-  transition: all 150ms var(--ease-out);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
-```
 
-### Cards
-```css
-.card {
-  background: white;
-  border-radius: 0.5rem;
-  padding: var(--space-6);
-  box-shadow:
-    0 1px 3px rgba(0,0,0,0.1),
-    0 1px 2px rgba(0,0,0,0.06);
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.button-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.button-secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
 }
 ```
 
-### Form Inputs
+### Input
 ```css
 .input {
   width: 100%;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--gray-300);
+  min-height: 44px;
+  border: 1px solid var(--color-border);
   border-radius: 0.375rem;
-  transition: border-color 150ms, box-shadow 150ms;
+  font-size: var(--text-base);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
 }
 
 .input:focus {
+  outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  outline: none;
+}
+
+.input:invalid {
+  border-color: var(--color-error);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+```
+
+### Card
+```css
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: var(--space-6);
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.card-interactive {
+  cursor: pointer;
+  transition: box-shadow var(--duration-fast), transform var(--duration-fast);
+}
+
+.card-interactive:hover {
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
 }
 ```
 
 ---
 
-## Theme Support
+## Accessibility (A11y)
 
-### CSS Variables for Theming
+### Focus Management
 ```css
-:root {
-  --bg-primary: white;
-  --bg-secondary: var(--gray-50);
-  --text-primary: var(--gray-900);
-  --text-secondary: var(--gray-600);
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-[data-theme="dark"] {
-  --bg-primary: var(--gray-900);
-  --bg-secondary: var(--gray-800);
-  --text-primary: var(--gray-50);
-  --text-secondary: var(--gray-400);
+/* Remove focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: white;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+```
+
+### Screen Reader Only
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+```
+
+### ARIA Patterns
+```tsx
+// Button with loading state
+<button
+  aria-busy={isLoading}
+  aria-disabled={isDisabled}
+  aria-label={ariaLabel}
+>
+  {isLoading ? <Spinner /> : children}
+</button>
+
+// Form field with error
+<div>
+  <label htmlFor="email">Email</label>
+  <input
+    id="email"
+    type="email"
+    aria-invalid={!!error}
+    aria-describedby={error ? 'email-error' : undefined}
+  />
+  {error && (
+    <span id="email-error" role="alert">
+      {error}
+    </span>
+  )}
+</div>
+
+// Modal dialog
+<div
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+>
+  <h2 id="modal-title">Title</h2>
+  <p id="modal-description">Description</p>
+</div>
+```
+
+---
+
+## React Component Patterns
+
+### Compound Components
+```tsx
+// Button group with context
+const ButtonGroup = ({ children }: { children: React.ReactNode }) => (
+  <div role="group" className="button-group">
+    {children}
+  </div>
+);
+
+ButtonGroup.Button = ({ children, ...props }: ButtonProps) => (
+  <button className="button-group-item" {...props}>
+    {children}
+  </button>
+);
+
+// Usage
+<ButtonGroup>
+  <ButtonGroup.Button>Option 1</ButtonGroup.Button>
+  <ButtonGroup.Button>Option 2</ButtonGroup.Button>
+</ButtonGroup>
+```
+
+### Polymorphic Components
+```tsx
+type AsProps<E extends React.ElementType> = {
+  as?: E;
+};
+
+type PolymorphicProps<E extends React.ElementType, P = {}> = P &
+  AsProps<E> &
+  Omit<React.ComponentPropsWithoutRef<E>, keyof (AsProps<E> & P)>;
+
+function Button<E extends React.ElementType = 'button'>({
+  as,
+  children,
+  ...props
+}: PolymorphicProps<E, { variant?: 'primary' | 'secondary' }>) {
+  const Component = as || 'button';
+  return <Component {...props}>{children}</Component>;
+}
+
+// Usage
+<Button>Click me</Button>
+<Button as="a" href="/path">Link button</Button>
+```
+
+### forwardRef Pattern
+```tsx
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  error?: string;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, id, ...props }, ref) => {
+    const inputId = id || useId();
+
+    return (
+      <div className="input-wrapper">
+        <label htmlFor={inputId}>{label}</label>
+        <input
+          ref={ref}
+          id={inputId}
+          aria-invalid={!!error}
+          {...props}
+        />
+        {error && <span className="error">{error}</span>}
+      </div>
+    );
+  }
+);
+
+Input.displayName = 'Input';
+```
+
+---
+
+## Performance
+
+### Optimize Re-renders
+```tsx
+// Memoize expensive calculations
+const expensiveValue = useMemo(() => {
+  return computeExpensiveValue(a, b);
+}, [a, b]);
+
+// Memoize callbacks
+const handleClick = useCallback(() => {
+  doSomething(id);
+}, [id]);
+
+// Memoize components
+const MemoizedList = React.memo(({ items }: { items: Item[] }) => (
+  <ul>
+    {items.map((item) => (
+      <li key={item.id}>{item.name}</li>
+    ))}
+  </ul>
+));
+```
+
+### CSS Performance
+```css
+/* Use transform/opacity for animations (GPU-accelerated) */
+.animated {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Avoid animating these properties */
+/* width, height, top, left, margin, padding, border-width */
+
+/* Use will-change sparingly */
+.will-animate {
+  will-change: transform; /* Only when animation is imminent */
 }
 ```
 
@@ -238,11 +615,16 @@ Use consistent spacing scale (4px base):
 ## Quality Checklist
 
 Before shipping UI:
-- [ ] Typography hierarchy is clear
-- [ ] Color contrast meets WCAG AA
-- [ ] Spacing is consistent
-- [ ] Interactive states (hover, focus, active) defined
-- [ ] Responsive behavior tested
-- [ ] Reduced motion preference respected
-- [ ] Loading and error states designed
-- [ ] Empty states designed
+- [ ] Typography hierarchy is clear and consistent
+- [ ] Color contrast meets WCAG AA (4.5:1 for text)
+- [ ] Spacing follows the design system scale
+- [ ] All interactive elements have visible focus states
+- [ ] Touch targets are at least 44×44px
+- [ ] Component works with keyboard navigation
+- [ ] Screen reader announces content correctly
+- [ ] Reduced motion preference is respected
+- [ ] Loading states are designed
+- [ ] Error states are designed
+- [ ] Empty states are designed
+- [ ] Works across target browsers
+- [ ] Responsive at all breakpoints

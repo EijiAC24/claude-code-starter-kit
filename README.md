@@ -12,6 +12,7 @@ A production-ready starter kit for Claude Code featuring modular rules, pre-conf
 - **Secure Defaults** - Pre-configured permissions to protect secrets and prevent dangerous operations
 - **Custom Commands** - 5 ready-to-use slash commands for common workflows
 - **Comprehensive Coverage** - Code style, testing, security, Git, design patterns, frontend design
+- **Multi-Language Support** - TypeScript/JavaScript, Dart/Flutter, Godot/GDScript
 
 ## File Structure
 
@@ -21,13 +22,15 @@ claude-starter-kit/
 └── .claude/
     ├── CLAUDE.md              # Main project configuration
     ├── settings.json          # Permissions & environment
-    ├── rules/                 # Modular rules (6 files)
+    ├── rules/                 # Modular rules (8 files)
     │   ├── code-style.md      # Formatting, naming, TypeScript
     │   ├── testing.md         # AAA pattern, coverage, mocking
     │   ├── security.md        # Secrets, validation, OWASP
     │   ├── git-workflow.md    # Branches, commits, PRs
     │   ├── design-patterns.md # GoF patterns with examples
-    │   └── frontend-design.md # Typography, color, motion
+    │   ├── frontend-design.md # Typography, color, motion
+    │   ├── dart-flutter.md    # Dart & Flutter best practices
+    │   └── godot.md           # Godot & GDScript conventions
     └── commands/              # Slash commands (5 files)
         ├── review.md          # /project:review
         ├── fix-issue.md       # /project:fix-issue
@@ -46,6 +49,8 @@ claude-starter-kit/
 | `git-workflow.md` | All files | Branch naming, conventional commits, PR templates |
 | `design-patterns.md` | `src/**/*` | Gang of Four patterns with TypeScript examples |
 | `frontend-design.md` | `*.tsx`, `*.css` | Typography, color systems, animations, components |
+| `dart-flutter.md` | `**/*.dart` | Dart/Flutter naming, async, state management, widgets |
+| `godot.md` | `**/*.gd`, `*.tscn` | GDScript style, signals, nodes, scene organization |
 
 ## Slash Commands
 
@@ -89,6 +94,7 @@ Claude Code 用の本番環境対応スターターキット。モジュラー�
 - **安全なデフォルト設定** - シークレット保護と危険な操作の防止
 - **カスタムコマンド** - よく使うワークフロー用の5つのスラッシュコマンド
 - **包括的なカバレッジ** - コードスタイル、テスト、セキュリティ、Git、デザインパターン、フロントエンド
+- **マルチ言語対応** - TypeScript/JavaScript、Dart/Flutter、Godot/GDScript
 
 ## ファイル構成
 
@@ -98,13 +104,15 @@ claude-starter-kit/
 └── .claude/
     ├── CLAUDE.md              # メインプロジェクト設定
     ├── settings.json          # 権限・環境設定
-    ├── rules/                 # モジュラールール（6ファイル）
+    ├── rules/                 # モジュラールール（8ファイル）
     │   ├── code-style.md      # フォーマット、命名規則、TypeScript
     │   ├── testing.md         # AAAパターン、カバレッジ、モック
     │   ├── security.md        # シークレット、バリデーション、OWASP
     │   ├── git-workflow.md    # ブランチ、コミット、PR
     │   ├── design-patterns.md # GoFパターン（コード例付き）
-    │   └── frontend-design.md # タイポグラフィ、カラー、アニメーション
+    │   ├── frontend-design.md # タイポグラフィ、カラー、アニメーション
+    │   ├── dart-flutter.md    # Dart & Flutter ベストプラクティス
+    │   └── godot.md           # Godot & GDScript 規約
     └── commands/              # スラッシュコマンド（5ファイル）
         ├── review.md          # /project:review
         ├── fix-issue.md       # /project:fix-issue
@@ -123,6 +131,8 @@ claude-starter-kit/
 | `git-workflow.md` | 全ファイル | ブランチ命名、Conventional Commits、PRテンプレート |
 | `design-patterns.md` | `src/**/*` | GoF 23パターンの解説とTypeScript例 |
 | `frontend-design.md` | `*.tsx`, `*.css` | タイポグラフィ、カラーシステム、アニメーション |
+| `dart-flutter.md` | `**/*.dart` | Dart/Flutter 命名規則、非同期、状態管理、ウィジェット |
+| `godot.md` | `**/*.gd`, `*.tscn` | GDScriptスタイル、シグナル、ノード、シーン構成 |
 
 ## スラッシュコマンド
 

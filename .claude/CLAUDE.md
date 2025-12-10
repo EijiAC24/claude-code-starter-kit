@@ -1,91 +1,102 @@
-# Project Configuration Template
+# Project Configuration
 
-> This is a universal template for Claude Code. Customize for your specific project.
+> Keep this file minimal. Include ONLY what's needed in EVERY session.
+> Store detailed documentation in `docs/` and reference with `@docs/filename.md`.
 
-## Quick Start
+## Commands
 
 ```bash
-# Common commands (customize for your project)
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run test         # Run test suite
-npm run lint         # Lint code
-npm run format       # Format code
+# Development (customize for your stack)
+npm run dev          # Start dev server
+npm run build        # Production build
+npm run test         # Run tests
+npm run lint         # Lint & fix
+npm run typecheck    # Type check (if TS)
+
+# Flutter/Dart projects
+flutter run          # Run app
+flutter test         # Run tests
+flutter analyze      # Lint
+
+# Godot projects
+# Use Godot editor or CLI
 ```
 
 ## Project Structure
 
 ```
-your-project/
+project/
 ├── src/              # Source code
+│   ├── components/   # UI components
+│   ├── services/     # Business logic
+│   ├── utils/        # Utilities
+│   └── types/        # Type definitions
 ├── tests/            # Test files
-├── docs/             # Documentation
-├── public/           # Static assets
-└── config/           # Configuration files
+├── docs/             # Documentation (reference with @docs/*)
+└── public/           # Static assets
 ```
 
-## Core Files
+## Key Files
 
-- `package.json` - Dependencies and scripts
-- `tsconfig.json` - TypeScript configuration
-- See @README.md for project overview
+- @README.md - Project overview
+- @package.json - Available npm scripts
 
-## Code Quality Standards
+## Rules
 
-### General Principles
-- Write self-documenting code with clear variable names
-- Keep functions small and focused (single responsibility)
-- Prefer composition over inheritance
-- Handle errors explicitly, never silently ignore them
+Modular rules auto-load based on file paths:
 
-### Language-Specific Rules
-- Detailed rules are in `.claude/rules/` directory
-- See @.claude/rules/code-style.md for formatting standards
-- See @.claude/rules/testing.md for test requirements
+| Rule | Applies To |
+|------|------------|
+| @.claude/rules/code-style.md | `src/**/*.{ts,tsx,js,jsx}` |
+| @.claude/rules/testing.md | `tests/**`, `*.test.*` |
+| @.claude/rules/security.md | All source files |
+| @.claude/rules/git-workflow.md | All files |
+| @.claude/rules/design-patterns.md | `src/**/*` |
+| @.claude/rules/frontend-design.md | `*.tsx`, `*.css` |
+| @.claude/rules/dart-flutter.md | `**/*.dart` |
+| @.claude/rules/godot.md | `**/*.gd`, `*.tscn` |
 
-### Architecture & Design
-- See @.claude/rules/design-patterns.md for GoF pattern reference
-- See @.claude/rules/frontend-design.md for UI/UX guidelines
+## Workflow
 
-## Git Workflow
+1. **Explore** - Understand before changing
+2. **Plan** - Use `think` for complex tasks
+3. **Implement** - Small, focused changes
+4. **Test** - Verify before committing
+5. **Commit** - Conventional commits format
 
-- Branch naming: `feature/`, `fix/`, `refactor/`, `docs/`
-- Commit messages: Use conventional commits format
-- See @.claude/rules/git-workflow.md for details
+## Critical Rules
 
-## Security
+### MUST DO
+- Read files before modifying
+- Run tests after changes
+- Use explicit types (avoid `any`)
+- Handle errors with context
+- Validate external input
 
-- NEVER commit secrets or credentials
-- Validate all external input
-- See @.claude/rules/security.md for security checklist
+### MUST NOT
+- Commit secrets/credentials
+- Ignore errors silently
+- Skip tests for new features
+- Use `rm -rf` without confirmation
+- Force push to main/master
 
-## Testing Requirements
+## Project-Specific Notes
 
-- Write tests for all new features
-- Maintain minimum 80% code coverage
-- Run tests before committing
-- See @.claude/rules/testing.md for conventions
-
-## Environment Setup
-
-```bash
-# Environment variables (create .env.local)
-DATABASE_URL=        # Database connection string
-API_KEY=             # API key (never commit!)
-```
-
-## Important Notes
-
-<!-- Add project-specific warnings and gotchas here -->
-- [Add any unexpected behaviors or warnings]
-- [Add any project-specific conventions]
+<!--
+Add your project-specific instructions below.
+Use `#` shortcut during sessions to add frequently needed instructions.
+Examples:
+- "This project uses Prisma for database"
+- "API base URL is in NEXT_PUBLIC_API_URL"
+- "Component tests use data-testid attributes"
+-->
 
 ---
 
-## How to Customize This Template
+## Template Usage
 
-1. Replace placeholder commands with your actual project commands
-2. Update the project structure diagram
-3. Add project-specific notes and warnings
-4. Remove unused sections
-5. Use `#` shortcut during sessions to add frequently needed instructions
+1. **Customize commands** - Replace with your actual scripts
+2. **Update structure** - Match your project layout
+3. **Add notes** - Document gotchas and conventions
+4. **Remove unused rules** - Delete irrelevant rule files
+5. **Keep minimal** - Move detailed docs to `docs/` folder
