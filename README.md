@@ -78,7 +78,11 @@ npx degit EijiAC24/claude-code-starter-kit/.claude .claude
 git clone https://github.com/EijiAC24/claude-code-starter-kit.git --depth 1
 cp -r claude-code-starter-kit/.claude .claude
 rm -rf claude-code-starter-kit
+```
 
+**Important:** If Claude Code is already running, restart it after copying `.claude/` to load the new configuration.
+
+```bash
 # Start wizard
 claude
 > /new-project
@@ -270,7 +274,11 @@ npx degit EijiAC24/claude-code-starter-kit/.claude .claude
 git clone https://github.com/EijiAC24/claude-code-starter-kit.git --depth 1
 cp -r claude-code-starter-kit/.claude .claude
 rm -rf claude-code-starter-kit
+```
 
+**重要:** Claude Code が既に起動している場合は、`.claude/` コピー後に一度終了して再起動してください。新しい設定が読み込まれます。
+
+```bash
 # ウィザード起動
 claude
 > /new-project-ja
