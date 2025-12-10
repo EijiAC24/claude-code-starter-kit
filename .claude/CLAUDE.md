@@ -40,6 +40,7 @@ project/
 
 - @README.md - Project overview
 - @package.json - Available npm scripts
+- @docs/development-plan.md - MVP plan & progress tracking
 
 ## Rules
 
