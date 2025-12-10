@@ -69,8 +69,17 @@ claude-code-starter-kit/
 ## Quick Start
 
 ```bash
-git clone https://github.com/EijiAC24/claude-code-starter-kit.git
-cd claude-code-starter-kit
+cd your-project
+
+# Node.js users
+npx degit EijiAC24/claude-code-starter-kit/.claude .claude
+
+# Without Node.js
+git clone https://github.com/EijiAC24/claude-code-starter-kit.git --depth 1
+cp -r claude-code-starter-kit/.claude .claude
+rm -rf claude-code-starter-kit
+
+# Start wizard
 claude
 > /project:new-project
 ```
@@ -252,8 +261,17 @@ claude-code-starter-kit/
 ## クイックスタート
 
 ```bash
-git clone https://github.com/EijiAC24/claude-code-starter-kit.git
-cd claude-code-starter-kit
+cd your-project
+
+# Node.js ユーザー
+npx degit EijiAC24/claude-code-starter-kit/.claude .claude
+
+# Node.js がない場合
+git clone https://github.com/EijiAC24/claude-code-starter-kit.git --depth 1
+cp -r claude-code-starter-kit/.claude .claude
+rm -rf claude-code-starter-kit
+
+# ウィザード起動
 claude
 > /project:new-project-ja
 ```
