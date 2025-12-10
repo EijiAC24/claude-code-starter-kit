@@ -465,3 +465,82 @@ git rebase --continue
 # Abort if needed
 git rebase --abort
 ```
+
+---
+
+## Spec Changes → Update Documentation
+
+When requirements or direction changes during development, **always update project documentation**.
+
+### What Triggers an Update
+
+| Change Type | Update Required |
+|-------------|-----------------|
+| New feature added to scope | CLAUDE.md, spec doc |
+| Feature removed or deprioritized | CLAUDE.md, spec doc |
+| Tech stack change | CLAUDE.md |
+| API contract change | spec doc, API docs |
+| Data model change | spec doc, schema docs |
+| UI/UX direction change | spec doc, design docs |
+| Third-party service swap | CLAUDE.md |
+| Performance requirements change | spec doc |
+
+### What to Update
+
+**CLAUDE.md** - Update when:
+- Tech stack changes (new library, service, etc.)
+- Project structure changes
+- New commands needed
+- New conventions established
+
+```markdown
+## Project-Specific Notes
+
+<!-- Add change log here -->
+- [2025-01] Switched from REST to GraphQL
+- [2025-01] Added Redis for caching
+- [2025-02] Changed auth from JWT to session-based
+```
+
+**Spec Document** - Update when:
+- Features added/removed/changed
+- User flows modified
+- Business logic updated
+- Data models changed
+
+### Update Workflow
+
+```bash
+# 1. When spec changes during conversation
+"仕様が変わったので、CLAUDE.md と spec.md を更新して"
+
+# 2. Include in commit
+git add .claude/CLAUDE.md docs/spec.md
+git commit -m "docs: update spec for [change description]"
+```
+
+### Keep History
+
+Add a changelog section to track major changes:
+
+```markdown
+## Changelog
+
+| Date | Change | Reason |
+|------|--------|--------|
+| 2025-01-15 | Added offline mode | User feedback |
+| 2025-01-20 | Removed social login | Scope reduction |
+| 2025-02-01 | Switched to GraphQL | Performance |
+```
+
+### Rule: No Undocumented Changes
+
+**MUST DO:**
+- Update docs when direction changes
+- Note the reason for the change
+- Keep CLAUDE.md in sync with actual project state
+
+**MUST NOT:**
+- Leave outdated information in CLAUDE.md
+- Implement changed specs without updating docs
+- Let documentation drift from reality
