@@ -56,6 +56,7 @@ Modular rules auto-load based on file paths:
 | @.claude/rules/frontend-design.md | `*.tsx`, `*.css`, `*.dart`, `*.gd` |
 | @.claude/rules/dart-flutter.md | `**/*.dart` |
 | @.claude/rules/godot.md | `**/*.gd`, `*.tscn` |
+| @.claude/rules/external-services.md | When integrating DB, payments, etc. |
 
 ## Workflow
 
@@ -75,6 +76,7 @@ Modular rules auto-load based on file paths:
 - Validate external input
 - **Reference `@docs/spec.md` when implementing features** (don't rely on memory)
 - **Reference `@docs/designs/` when building UI** (match the design)
+- **Use MCP/CLI tools over manual setup** (DB, Stripe, Supabase, etc.)
 
 ### MUST NOT
 - Commit secrets/credentials
