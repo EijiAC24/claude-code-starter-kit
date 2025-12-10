@@ -1,4 +1,4 @@
-# claude-starter-kit
+# claude-code-starter-kit
 
 A production-ready starter kit for Claude Code featuring modular rules, pre-configured permissions, and reusable slash commands. Includes best practices for code style, testing, security, Git workflow, GoF design patterns, and frontend design.
 
@@ -17,7 +17,7 @@ A production-ready starter kit for Claude Code featuring modular rules, pre-conf
 ## File Structure
 
 ```
-claude-starter-kit/
+claude-code-starter-kit/
 ├── .gitignore
 └── .claude/
     ├── CLAUDE.md              # Main project configuration
@@ -174,7 +174,7 @@ Claude Code 用の本番環境対応スターターキット。モジュラー�
 ## ファイル構成
 
 ```
-claude-starter-kit/
+claude-code-starter-kit/
 ├── .gitignore
 └── .claude/
     ├── CLAUDE.md              # メインプロジェクト設定
