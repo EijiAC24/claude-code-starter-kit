@@ -32,13 +32,13 @@ claude-code-starter-kit/
     │   ├── dart-flutter.md    # Dart & Flutter best practices
     │   └── godot.md           # Godot & GDScript conventions
     └── commands/              # Slash commands (7 files)
-        ├── new-project.md     # /project:new-project (Setup wizard)
-        ├── new-project-ja.md  # /project:new-project-ja (日本語版)
-        ├── review.md          # /project:review
-        ├── fix-issue.md       # /project:fix-issue
-        ├── refactor.md        # /project:refactor
-        ├── add-tests.md       # /project:add-tests
-        └── explain.md         # /project:explain
+        ├── new-project.md     # /new-project (Setup wizard)
+        ├── new-project-ja.md  # /new-project-ja (日本語版)
+        ├── review.md          # /review
+        ├── fix-issue.md       # /fix-issue
+        ├── refactor.md        # /refactor
+        ├── add-tests.md       # /add-tests
+        └── explain.md         # /explain
 ```
 
 ## Rules Overview
@@ -50,7 +50,7 @@ claude-code-starter-kit/
 | `security.md` | `src/**/*` | Secrets management, input validation, XSS/SQLi prevention |
 | `git-workflow.md` | All files | Branch naming, conventional commits, PR templates |
 | `design-patterns.md` | `src/**/*` | Gang of Four patterns with TypeScript examples |
-| `frontend-design.md` | `*.tsx`, `*.css` | Typography, color systems, animations, components |
+| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart` | Typography, color systems, animations, components |
 | `dart-flutter.md` | `**/*.dart` | Dart/Flutter naming, async, state management, widgets |
 | `godot.md` | `**/*.gd`, `*.tscn` | GDScript style, signals, nodes, scene organization |
 
@@ -58,13 +58,13 @@ claude-code-starter-kit/
 
 | Command | Purpose |
 |---------|---------|
-| `/project:new-project` | **Interactive setup wizard** - Asks questions, gathers requirements, then sets up project |
-| `/project:new-project-ja` | Same as above in Japanese |
-| `/project:review` | Code review checklist (quality, security, tests) |
-| `/project:fix-issue` | Analyze and fix GitHub issues |
-| `/project:refactor` | Refactoring guide (improve without changing behavior) |
-| `/project:add-tests` | Add comprehensive tests with AAA pattern |
-| `/project:explain` | Detailed code explanation |
+| `/new-project` | **Interactive setup wizard** - Asks questions, gathers requirements, then sets up project |
+| `/new-project-ja` | Same as above in Japanese |
+| `/review` | Code review checklist (quality, security, tests) |
+| `/fix-issue` | Analyze and fix GitHub issues |
+| `/refactor` | Refactoring guide (improve without changing behavior) |
+| `/add-tests` | Add comprehensive tests with AAA pattern |
+| `/explain` | Detailed code explanation |
 
 ## Quick Start
 
@@ -81,7 +81,7 @@ rm -rf claude-code-starter-kit
 
 # Start wizard
 claude
-> /project:new-project
+> /new-project
 ```
 
 That's it! The wizard handles everything.
@@ -90,7 +90,7 @@ That's it! The wizard handles everything.
 
 ## Setup Wizard Flow
 
-The `/project:new-project` wizard guides you through 4 phases:
+The `/new-project` wizard guides you through 4 phases:
 
 ### Phase 1: Gather Information
 
@@ -175,7 +175,7 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 | Project Type | Rules Used |
 |-------------|-----------|
 | **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns |
+| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
 | **Godot** | godot, security, git-workflow, design-patterns |
 | **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 
@@ -224,13 +224,13 @@ claude-code-starter-kit/
     │   ├── dart-flutter.md    # Dart & Flutter ベストプラクティス
     │   └── godot.md           # Godot & GDScript 規約
     └── commands/              # スラッシュコマンド（7ファイル）
-        ├── new-project.md     # /project:new-project（セットアップウィザード）
-        ├── new-project-ja.md  # /project:new-project-ja（日本語版）
-        ├── review.md          # /project:review
-        ├── fix-issue.md       # /project:fix-issue
-        ├── refactor.md        # /project:refactor
-        ├── add-tests.md       # /project:add-tests
-        └── explain.md         # /project:explain
+        ├── new-project.md     # /new-project（セットアップウィザード）
+        ├── new-project-ja.md  # /new-project-ja（日本語版）
+        ├── review.md          # /review
+        ├── fix-issue.md       # /fix-issue
+        ├── refactor.md        # /refactor
+        ├── add-tests.md       # /add-tests
+        └── explain.md         # /explain
 ```
 
 ## ルール一覧
@@ -242,7 +242,7 @@ claude-code-starter-kit/
 | `security.md` | `src/**/*` | シークレット管理、入力検証、XSS/SQLi対策 |
 | `git-workflow.md` | 全ファイル | ブランチ命名、Conventional Commits、PRテンプレート |
 | `design-patterns.md` | `src/**/*` | GoF 23パターンの解説とTypeScript例 |
-| `frontend-design.md` | `*.tsx`, `*.css` | タイポグラフィ、カラーシステム、アニメーション |
+| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart` | タイポグラフィ、カラーシステム、アニメーション |
 | `dart-flutter.md` | `**/*.dart` | Dart/Flutter 命名規則、非同期、状態管理、ウィジェット |
 | `godot.md` | `**/*.gd`, `*.tscn` | GDScriptスタイル、シグナル、ノード、シーン構成 |
 
@@ -250,13 +250,13 @@ claude-code-starter-kit/
 
 | コマンド | 用途 |
 |---------|------|
-| `/project:new-project` | **対話型セットアップ** - 質問→要件収集→プロジェクト構築 |
-| `/project:new-project-ja` | 上記の日本語版 |
-| `/project:review` | コードレビュー（品質・セキュリティ・テスト） |
-| `/project:fix-issue` | GitHubイシューの分析と修正 |
-| `/project:refactor` | リファクタリングガイド |
-| `/project:add-tests` | テスト追加（AAAパターン） |
-| `/project:explain` | コードの詳細解説 |
+| `/new-project` | **対話型セットアップ** - 質問→要件収集→プロジェクト構築 |
+| `/new-project-ja` | 上記の日本語版 |
+| `/review` | コードレビュー（品質・セキュリティ・テスト） |
+| `/fix-issue` | GitHubイシューの分析と修正 |
+| `/refactor` | リファクタリングガイド |
+| `/add-tests` | テスト追加（AAAパターン） |
+| `/explain` | コードの詳細解説 |
 
 ## クイックスタート
 
@@ -273,7 +273,7 @@ rm -rf claude-code-starter-kit
 
 # ウィザード起動
 claude
-> /project:new-project-ja
+> /new-project-ja
 ```
 
 これだけ！ウィザードが全部やってくれます。
@@ -282,7 +282,7 @@ claude
 
 ## セットアップウィザードの流れ
 
-`/project:new-project-ja` は 4 つのフェーズでガイドします：
+`/new-project-ja` は 4 つのフェーズでガイドします：
 
 ### フェーズ 1: 情報収集
 
@@ -367,7 +367,7 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 | プロジェクト種別 | 使用ルール |
 |-----------------|-----------|
 | **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns |
+| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
 | **Godot** | godot, security, git-workflow, design-patterns |
 | **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 

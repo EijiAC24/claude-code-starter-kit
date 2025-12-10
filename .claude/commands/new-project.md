@@ -115,7 +115,7 @@ Once confirmed, execute these steps:
 - Copy `.claude/` folder structure
 - Remove unnecessary rules based on tech stack:
   - Web (React/Next.js): Keep code-style, testing, security, git-workflow, design-patterns, frontend-design
-  - Flutter: Keep dart-flutter, testing, security, git-workflow, design-patterns
+  - Flutter: Keep dart-flutter, testing, security, git-workflow, design-patterns, frontend-design
   - Godot: Keep godot, security, git-workflow, design-patterns
   - Node.js API: Keep code-style, testing, security, git-workflow, design-patterns
 

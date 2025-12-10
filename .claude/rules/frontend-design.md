@@ -1,10 +1,10 @@
 ---
-paths: src/**/*.{tsx,jsx}, **/*.css, **/*.scss, **/*.module.css
+paths: src/**/*.{tsx,jsx}, **/*.css, **/*.scss, **/*.module.css, **/*.dart
 ---
 
 # Frontend Design Guidelines
 
-> Based on modern design systems, accessibility standards, and React best practices for 2025.
+> Universal design principles for Web (React), Flutter, and other UI frameworks. Based on modern design systems and accessibility standards for 2025.
 
 ## Design Philosophy
 
@@ -489,9 +489,11 @@ font-family: 'JetBrains Mono', 'Fira Code', 'Berkeley Mono', monospace;
 
 ---
 
-## React Component Patterns
+## Framework-Specific Patterns
 
-### Compound Components
+### React Patterns
+
+#### Compound Components
 ```tsx
 // Button group with context
 const ButtonGroup = ({ children }: { children: React.ReactNode }) => (
@@ -513,7 +515,7 @@ ButtonGroup.Button = ({ children, ...props }: ButtonProps) => (
 </ButtonGroup>
 ```
 
-### Polymorphic Components
+#### Polymorphic Components
 ```tsx
 type AsProps<E extends React.ElementType> = {
   as?: E;
@@ -537,7 +539,7 @@ function Button<E extends React.ElementType = 'button'>({
 <Button as="a" href="/path">Link button</Button>
 ```
 
-### forwardRef Pattern
+#### forwardRef Pattern
 ```tsx
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -566,11 +568,209 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = 'Input';
 ```
 
+### Flutter Patterns
+
+#### Theme Definition
+```dart
+// lib/core/theme/app_theme.dart
+class AppTheme {
+  // Typography Scale (1.25 ratio)
+  static const double textXs = 12;
+  static const double textSm = 14;
+  static const double textBase = 16;
+  static const double textLg = 18;
+  static const double textXl = 20;
+  static const double text2Xl = 24;
+  static const double text3Xl = 30;
+  static const double text4Xl = 36;
+
+  // Spacing (4px base)
+  static const double space1 = 4;
+  static const double space2 = 8;
+  static const double space3 = 12;
+  static const double space4 = 16;
+  static const double space5 = 20;
+  static const double space6 = 24;
+  static const double space8 = 32;
+
+  // Animation Durations
+  static const Duration durationFast = Duration(milliseconds: 150);
+  static const Duration durationNormal = Duration(milliseconds: 250);
+  static const Duration durationSlow = Duration(milliseconds: 400);
+
+  // Curves
+  static const Curve easeOut = Curves.easeOut;
+  static const Curve easeInOut = Curves.easeInOut;
+  static const Curve spring = Curves.elasticOut;
+}
+```
+
+#### Color Scheme
+```dart
+// lib/core/theme/app_colors.dart
+class AppColors {
+  // Brand
+  static const Color primary = Color(0xFF2563EB);
+  static const Color primaryHover = Color(0xFF1D4ED8);
+
+  // Semantic
+  static const Color success = Color(0xFF16A34A);
+  static const Color warning = Color(0xFFCA8A04);
+  static const Color error = Color(0xFFDC2626);
+
+  // Neutral
+  static const Color gray50 = Color(0xFFF8FAFC);
+  static const Color gray100 = Color(0xFFF1F5F9);
+  static const Color gray200 = Color(0xFFE2E8F0);
+  static const Color gray500 = Color(0xFF64748B);
+  static const Color gray900 = Color(0xFF0F172A);
+
+  // Light theme
+  static ColorScheme get lightScheme => ColorScheme.light(
+    primary: primary,
+    error: error,
+    surface: Colors.white,
+    onSurface: gray900,
+  );
+
+  // Dark theme
+  static ColorScheme get darkScheme => ColorScheme.dark(
+    primary: primary,
+    error: error,
+    surface: gray900,
+    onSurface: gray50,
+  );
+}
+```
+
+#### Accessible Button
+```dart
+class AppButton extends StatelessWidget {
+  final String label;
+  final VoidCallback? onPressed;
+  final bool isLoading;
+
+  const AppButton({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.isLoading = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      enabled: onPressed != null && !isLoading,
+      child: SizedBox(
+        height: 44, // Minimum touch target
+        child: ElevatedButton(
+          onPressed: isLoading ? null : onPressed,
+          child: isLoading
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : Text(label),
+        ),
+      ),
+    );
+  }
+}
+```
+
+#### Animated Container
+```dart
+class FadeSlideIn extends StatelessWidget {
+  final Widget child;
+  final Duration duration;
+  final Offset offset;
+
+  const FadeSlideIn({
+    super.key,
+    required this.child,
+    this.duration = const Duration(milliseconds: 250),
+    this.offset = const Offset(0, 8),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Respect reduced motion
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
+
+    if (reduceMotion) {
+      return child;
+    }
+
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: duration,
+      curve: Curves.easeOut,
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Transform.translate(
+            offset: Offset(
+              offset.dx * (1 - value),
+              offset.dy * (1 - value),
+            ),
+            child: child,
+          ),
+        );
+      },
+      child: child,
+    );
+  }
+}
+```
+
+#### Responsive Layout
+```dart
+class ResponsiveBuilder extends StatelessWidget {
+  final Widget mobile;
+  final Widget? tablet;
+  final Widget? desktop;
+
+  const ResponsiveBuilder({
+    super.key,
+    required this.mobile,
+    this.tablet,
+    this.desktop,
+  });
+
+  static const double breakpointSm = 640;
+  static const double breakpointMd = 768;
+  static const double breakpointLg = 1024;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth >= breakpointLg && desktop != null) {
+          return desktop!;
+        }
+        if (constraints.maxWidth >= breakpointMd && tablet != null) {
+          return tablet!;
+        }
+        return mobile;
+      },
+    );
+  }
+}
+```
+
 ---
 
 ## Performance
 
-### Optimize Re-renders
+### General Principles
+- Use `transform` and `opacity` for animations (GPU-accelerated)
+- Avoid animating: `width`, `height`, `top`, `left`, `margin`, `padding`
+- Minimize rebuilds/re-renders
+- Lazy load heavy components
+
+### React Performance
 ```tsx
 // Memoize expensive calculations
 const expensiveValue = useMemo(() => {
@@ -592,22 +792,37 @@ const MemoizedList = React.memo(({ items }: { items: Item[] }) => (
 ));
 ```
 
-### CSS Performance
-```css
-/* Use transform/opacity for animations (GPU-accelerated) */
-.animated {
-  transform: translateX(0);
-  opacity: 1;
-  transition: transform 0.2s, opacity 0.2s;
+### Flutter Performance
+```dart
+// Use const constructors
+const SizedBox(height: 16); // ✅
+SizedBox(height: 16);       // ❌
+
+// Use const widgets where possible
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key}); // ✅ const constructor
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Text('Static text'),    // ✅ const
+        Icon(Icons.star),       // ✅ const
+      ],
+    );
+  }
 }
 
-/* Avoid animating these properties */
-/* width, height, top, left, margin, padding, border-width */
+// Avoid rebuilding entire lists
+ListView.builder(           // ✅ Lazy builds items
+  itemCount: items.length,
+  itemBuilder: (context, index) => ItemWidget(items[index]),
+);
 
-/* Use will-change sparingly */
-.will-animate {
-  will-change: transform; /* Only when animation is imminent */
-}
+// Use RepaintBoundary for complex animations
+RepaintBoundary(
+  child: ComplexAnimatedWidget(),
+);
 ```
 
 ---

@@ -115,7 +115,7 @@
 - `.claude/` フォルダ構成をコピー
 - 技術スタックに応じて不要なルールを削除：
   - Web (React/Next.js): code-style, testing, security, git-workflow, design-patterns, frontend-design を残す
-  - Flutter: dart-flutter, testing, security, git-workflow, design-patterns を残す
+  - Flutter: dart-flutter, testing, security, git-workflow, design-patterns, frontend-design を残す
   - Godot: godot, security, git-workflow, design-patterns を残す
   - Node.js API: code-style, testing, security, git-workflow, design-patterns を残す
 

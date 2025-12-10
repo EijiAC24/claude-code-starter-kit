@@ -52,7 +52,7 @@ Modular rules auto-load based on file paths:
 | @.claude/rules/security.md | All source files |
 | @.claude/rules/git-workflow.md | All files |
 | @.claude/rules/design-patterns.md | `src/**/*` |
-| @.claude/rules/frontend-design.md | `*.tsx`, `*.css` |
+| @.claude/rules/frontend-design.md | `*.tsx`, `*.css`, `*.dart` |
 | @.claude/rules/dart-flutter.md | `**/*.dart` |
 | @.claude/rules/godot.md | `**/*.gd`, `*.tscn` |
 
