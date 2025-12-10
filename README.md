@@ -68,89 +68,100 @@ claude-code-starter-kit/
 
 ## Quick Start
 
-### Step 1: Clone this repo
-
 ```bash
 git clone https://github.com/EijiAC24/claude-code-starter-kit.git
 cd claude-code-starter-kit
-```
-
-### Step 2: Start the setup wizard
-
-```bash
 claude
 > /project:new-project
 ```
 
-The wizard will:
-1. Ask about your project (spec, tech stack, scope)
-2. Copy `.claude/` to your project folder
-3. Remove unnecessary rules based on your stack
-4. Configure CLAUDE.md for your project
+That's it! The wizard handles everything.
 
-### Alternative: Manual setup
+---
+
+## Setup Wizard Flow
+
+The `/project:new-project` wizard guides you through 4 phases:
+
+### Phase 1: Gather Information
+
+The wizard asks for your spec document:
+
+```
+What are you building?
+
+Please share your spec (any of these works):
+1. File path (recommended)  →  C:\Users\you\Documents\spec.md
+2. Paste text directly
+3. Describe briefly
+```
+
+**What you can provide:**
+- Spec document (any length - full document is kept, not summarized)
+- UI mockups / prototype images → placed in `docs/designs/`
+- Wireframes, screen flows
+- Reference apps or websites
+
+### Phase 2: Confirm Understanding
+
+The wizard summarizes what it understood:
+
+```
+## Project Summary
+
+**Project:** Task management mobile app
+**Stack:** Flutter + Supabase + Riverpod
+**Scope:** MVP
+
+**Key Features:**
+1. User authentication
+2. Task CRUD
+3. Push notifications
+
+Is this correct?
+```
+
+Only asks additional questions if something is missing from your spec.
+
+### Phase 3: Project Setup
+
+Once confirmed, the wizard automatically:
+
+1. **Copies `.claude/`** to your project
+2. **Removes unused rules** (e.g., removes `godot.md` for Flutter projects)
+3. **Configures `CLAUDE.md`** with your tech stack and commands
+4. **Creates directory structure:**
+   ```
+   your-project/
+   ├── .claude/
+   ├── docs/
+   │   ├── spec.md        ← Your full spec
+   │   └── designs/       ← UI images
+   ├── lib/ or src/
+   └── tests/
+   ```
+5. **Initializes project** (flutter create, npm init, etc.)
+
+### Phase 4: Start Building
+
+```
+Setup complete! What's next?
+
+1. Create MVP task list
+2. Design data models first
+3. Start with [specific feature]
+```
+
+---
+
+## Alternative: Manual Setup
 
 ```bash
-# Copy .claude/ folder to your project
 cp -r claude-code-starter-kit/.claude your-project/.claude
-
-# Then customize
-# 1. Edit CLAUDE.md for your project
-# 2. Delete unused rules from .claude/rules/
-# 3. Use # shortcut during sessions to add notes
-```
-
-## Project Setup Flow (with Claude Code)
-
-Start a new project by chatting with Claude Code. Just prepare your spec document and follow this conversation flow.
-
-### Prerequisites
-
-- Your spec document ready (even a simple one-pager is fine)
-- Empty project folder created
-
-### Conversation Flow
-
-**Step 1: Setup starter kit**
-
-```
-I want to start a new project. Here's my spec:
-[Paste your spec or attach file]
-
-Please:
-1. Copy claude-starter-kit to this project
-2. Remove unnecessary rules based on my tech stack
-3. Configure CLAUDE.md for this project
-```
-
-**Step 2: Plan the architecture**
-
-```
-Based on the spec, help me design:
-1. Directory structure
-2. Key files and their responsibilities
-3. Data models / schemas
-4. External services needed
-```
-
-**Step 3: Prioritize and create MVP plan**
-
-```
-Let's prioritize features:
-1. What's the minimum for MVP?
-2. What can wait for v2?
-3. Create a task list for MVP implementation
-```
-
-**Step 4: Start implementation**
-
-```
-Let's start building. Begin with [feature/component name].
+# Then edit CLAUDE.md and delete unused rules
 ```
 
 ### Rules by Project Type
-
-Claude will automatically select the right rules, but here's a reference:
 
 | Project Type | Rules Used |
 |-------------|-----------|
@@ -240,89 +251,100 @@ claude-code-starter-kit/
 
 ## クイックスタート
 
-### ステップ 1: このリポをクローン
-
 ```bash
 git clone https://github.com/EijiAC24/claude-code-starter-kit.git
 cd claude-code-starter-kit
-```
-
-### ステップ 2: セットアップウィザードを起動
-
-```bash
 claude
 > /project:new-project-ja
 ```
 
-ウィザードが:
-1. プロジェクトについて質問（仕様、技術スタック、規模）
-2. `.claude/` をプロジェクトフォルダにコピー
-3. スタックに合わせて不要なルールを削除
-4. CLAUDE.md をプロジェクト用に設定
+これだけ！ウィザードが全部やってくれます。
 
-### 別の方法: 手動セットアップ
+---
+
+## セットアップウィザードの流れ
+
+`/project:new-project-ja` は 4 つのフェーズでガイドします：
+
+### フェーズ 1: 情報収集
+
+仕様書を聞かれます：
+
+```
+何を作りますか？
+
+仕様書を共有してください（以下のどれでもOK）：
+1. ファイルパス（推奨）→ C:\Users\you\Documents\spec.md
+2. テキストを直接貼り付け
+3. 口頭で簡単に説明
+```
+
+**渡せるもの：**
+- 仕様書（長くてもOK - 全文保持、要約しない）
+- UI モックアップ / プロトタイプ画像 → `docs/designs/` に配置
+- ワイヤーフレーム、画面遷移図
+- 参考にしたいアプリやサイト
+
+### フェーズ 2: 理解の確認
+
+ウィザードが理解した内容をまとめます：
+
+```
+## プロジェクトサマリー
+
+**プロジェクト:** タスク管理モバイルアプリ
+**スタック:** Flutter + Supabase + Riverpod
+**規模:** MVP
+
+**主要機能:**
+1. ユーザー認証
+2. タスク CRUD
+3. プッシュ通知
+
+この理解で合っていますか？
+```
+
+仕様書に不足があれば追加で質問されます。
+
+### フェーズ 3: プロジェクトセットアップ
+
+確認後、ウィザードが自動で：
+
+1. **`.claude/` をコピー**
+2. **不要ルールを削除**（Flutter なら `godot.md` 等を削除）
+3. **`CLAUDE.md` を設定**（技術スタック、コマンド）
+4. **ディレクトリ構成を作成：**
+   ```
+   your-project/
+   ├── .claude/
+   ├── docs/
+   │   ├── spec.md        ← 仕様書（全文）
+   │   └── designs/       ← UI画像
+   ├── lib/ or src/
+   └── tests/
+   ```
+5. **プロジェクト初期化**（flutter create, npm init など）
+
+### フェーズ 4: 開発開始
+
+```
+セットアップ完了！次は何をしますか？
+
+1. MVP のタスクリストを作る
+2. まずデータモデルを設計
+3. [特定の機能] から始める
+```
+
+---
+
+## 別の方法: 手動セットアップ
 
 ```bash
-# .claude/ フォルダをプロジェクトにコピー
 cp -r claude-code-starter-kit/.claude your-project/.claude
-
-# その後カスタマイズ
-# 1. CLAUDE.md をプロジェクト用に編集
-# 2. .claude/rules/ から不要なルールを削除
-# 3. セッション中に # ショートカットでメモ追加
-```
-
-## プロジェクト開始フロー（Claude Code との対話）
-
-Claude Code と会話しながら新規プロジェクトを始めます。仕様書を用意して、以下の流れで進めてください。
-
-### 事前準備
-
-- 仕様書（ペライチでもOK）
-- 空のプロジェクトフォルダ
-
-### 会話フロー
-
-**ステップ 1: スターターキットのセットアップ**
-
-```
-新しいプロジェクトを始めたい。仕様書はこれ：
-[仕様書を貼り付け or ファイル添付]
-
-以下をやって：
-1. claude-starter-kit をこのプロジェクトにコピー
-2. 技術スタックに合わせて不要なルールを削除
-3. CLAUDE.md をこのプロジェクト用に設定
-```
-
-**ステップ 2: アーキテクチャ設計**
-
-```
-仕様書をもとに設計して：
-1. ディレクトリ構成
-2. 主要ファイルと責務
-3. データモデル / スキーマ
-4. 必要な外部サービス
-```
-
-**ステップ 3: MVP の優先順位決め**
-
-```
-機能の優先順位を決めよう：
-1. MVP に必要な最小限は？
-2. v2 以降に回せるものは？
-3. MVP 実装のタスクリストを作って
-```
-
-**ステップ 4: 実装開始**
-
-```
-では作り始めよう。[機能/コンポーネント名] から始めて。
+# CLAUDE.md を編集、不要なルールを削除
 ```
 
 ### プロジェクト種別ごとのルール
-
-Claude が自動で適切なルールを選択しますが、参考までに：
 
 | プロジェクト種別 | 使用ルール |
 |-----------------|-----------|

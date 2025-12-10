@@ -9,13 +9,30 @@ First, ask the user for their spec document or project description:
 ```
 What are you building?
 
-Please share your spec document or project description:
-- Paste text directly
-- Provide a file path
-- Or describe it briefly
+Please share your spec (any of these works):
+
+1. File path (recommended)
+   e.g., C:\Users\you\Documents\spec.md
+   e.g., /Users/you/Documents/spec.md
+
+2. Paste text directly
+
+3. Describe briefly in your own words
+
+※ Long specs are fine - just give me the path and I'll read it all
+※ I'll create a summary version if needed
 ```
 
-### After receiving the spec, analyze it to extract:
+### After receiving the spec:
+
+**If file path** → Use Read tool to load it
+
+**Keep full spec (no summarizing):**
+- Copy to `docs/spec.md` as-is
+- Do NOT summarize (information loss)
+- Always reference spec when implementing
+
+**Extract the following:**
 
 1. **Project Overview** - What the app/project does
 2. **Tech Stack** - Frontend, backend, database, etc.
@@ -58,9 +75,13 @@ What's the scope of this project?
 ```
 Do you have any existing resources?
 
-- Design files (Figma, etc.)
+- UI designs / prototype images (screenshots, Figma, even hand-drawn sketches)
+- Wireframes / screen flow diagrams
 - API documentation
-- Reference projects
+- Reference apps or websites
+- Brand guidelines (colors, fonts, etc.)
+
+※ If you have images, please provide the file path. I'll place them in docs/designs/.
 ```
 
 ## Phase 2: Confirm Understanding
@@ -109,7 +130,14 @@ Configure with:
 Based on tech stack, create appropriate folders:
 - `src/` or `lib/` for source code
 - `tests/` for test files
-- `docs/` for documentation (place spec here)
+- `docs/` for documentation
+  - `docs/spec.md` - specification document
+  - `docs/designs/` - UI images, wireframes, prototype images
+
+**If UI images are provided:**
+- Copy user's images to `docs/designs/`
+- Add reference in CLAUDE.md: `@docs/designs/`
+- Reference these images when implementing UI
 
 ### Step 4: Initialize Project
 - Run appropriate init commands (npm init, flutter create, etc.)

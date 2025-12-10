@@ -72,6 +72,8 @@ Modular rules auto-load based on file paths:
 - Use explicit types (avoid `any`)
 - Handle errors with context
 - Validate external input
+- **Reference `@docs/spec.md` when implementing features** (don't rely on memory)
+- **Reference `@docs/designs/` when building UI** (match the design)
 
 ### MUST NOT
 - Commit secrets/credentials
