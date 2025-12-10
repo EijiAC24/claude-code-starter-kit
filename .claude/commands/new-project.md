@@ -4,18 +4,38 @@ You are starting a new project setup wizard. Guide the user through project init
 
 ## Phase 1: Gather Information
 
-Ask the user these questions ONE AT A TIME. Wait for their response before asking the next question.
+First, ask the user for their spec document or project description:
 
-### Question 1: Project Overview
 ```
 What are you building?
 
-Please share:
-- A brief description of the project
-- Your spec document (paste text, file path, or URL)
+Please share your spec document or project description:
+- Paste text directly
+- Provide a file path
+- Or describe it briefly
 ```
 
-### Question 2: Tech Stack
+### After receiving the spec, analyze it to extract:
+
+1. **Project Overview** - What the app/project does
+2. **Tech Stack** - Frontend, backend, database, etc.
+3. **Project Scope** - Prototype, MVP, or production
+4. **Existing Resources** - Design files, APIs, references
+
+### Then, ONLY ask about missing information:
+
+- If tech stack is clear from spec → Don't ask
+- If scope is mentioned → Don't ask
+- If resources are listed → Don't ask
+
+**Example:** If user provides a spec that says "Flutter app with Supabase backend for MVP launch", you already know:
+- Tech: Flutter + Supabase ✓
+- Scope: MVP ✓
+- Only ask: "Do you have any design files or other resources?"
+
+### Questions to ask ONLY if not in spec:
+
+**Tech Stack (if unclear):**
 ```
 What's your tech stack?
 
@@ -23,10 +43,9 @@ Examples:
 - Frontend: React/Next.js, Vue, Flutter, Godot
 - Backend: Node.js, Python, Supabase, Firebase
 - Database: PostgreSQL, MongoDB, SQLite
-- Other: AI/ML, Mobile, Game, CLI tool
 ```
 
-### Question 3: Project Scope
+**Project Scope (if unclear):**
 ```
 What's the scope of this project?
 
@@ -35,14 +54,13 @@ What's the scope of this project?
 3. Production app (quality, tests, CI/CD)
 ```
 
-### Question 4: Existing Resources
+**Existing Resources (if not mentioned):**
 ```
 Do you have any existing resources?
 
 - Design files (Figma, etc.)
 - API documentation
 - Reference projects
-- Brand guidelines
 ```
 
 ## Phase 2: Confirm Understanding
