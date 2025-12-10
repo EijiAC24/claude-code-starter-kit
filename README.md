@@ -10,7 +10,7 @@ A production-ready starter kit for Claude Code featuring modular rules, pre-conf
 
 - **Modular Rules** - Path-based conditional loading (`.claude/rules/`)
 - **Secure Defaults** - Pre-configured permissions to protect secrets and prevent dangerous operations
-- **Custom Commands** - 5 ready-to-use slash commands for common workflows
+- **Custom Commands** - 7 ready-to-use slash commands for common workflows
 - **Comprehensive Coverage** - Code style, testing, security, Git, design patterns, frontend design
 - **Multi-Language Support** - TypeScript/JavaScript, Dart/Flutter, Godot/GDScript
 
@@ -31,7 +31,9 @@ claude-starter-kit/
     │   ├── frontend-design.md # Typography, color, motion
     │   ├── dart-flutter.md    # Dart & Flutter best practices
     │   └── godot.md           # Godot & GDScript conventions
-    └── commands/              # Slash commands (5 files)
+    └── commands/              # Slash commands (7 files)
+        ├── new-project.md     # /project:new-project (Setup wizard)
+        ├── new-project-ja.md  # /project:new-project-ja (日本語版)
         ├── review.md          # /project:review
         ├── fix-issue.md       # /project:fix-issue
         ├── refactor.md        # /project:refactor
@@ -56,6 +58,8 @@ claude-starter-kit/
 
 | Command | Purpose |
 |---------|---------|
+| `/project:new-project` | **Interactive setup wizard** - Asks questions, gathers requirements, then sets up project |
+| `/project:new-project-ja` | Same as above in Japanese |
 | `/project:review` | Code review checklist (quality, security, tests) |
 | `/project:fix-issue` | Analyze and fix GitHub issues |
 | `/project:refactor` | Refactoring guide (improve without changing behavior) |
@@ -64,10 +68,22 @@ claude-starter-kit/
 
 ## Quick Start
 
-1. **Copy `.claude/` folder to your project**
-2. **Customize `CLAUDE.md`** - Update commands, structure, notes
-3. **Remove unused rules** - Delete files you don't need
-4. **Use `#` shortcut** - Add instructions during sessions
+**Option A: Use the setup wizard (Recommended)**
+
+```bash
+cd your-project
+claude
+> /project:new-project
+```
+
+The wizard will ask you questions about your project and set everything up automatically.
+
+**Option B: Manual setup**
+
+1. Copy `.claude/` folder to your project
+2. Customize `CLAUDE.md` - Update commands, structure, notes
+3. Remove unused rules - Delete files you don't need
+4. Use `#` shortcut - Add instructions during sessions
 
 ## Project Setup Flow (with Claude Code)
 
@@ -151,7 +167,7 @@ Claude Code 用の本番環境対応スターターキット。モジュラー�
 
 - **モジュラールール** - パスベースの条件付きロード（`.claude/rules/`）
 - **安全なデフォルト設定** - シークレット保護と危険な操作の防止
-- **カスタムコマンド** - よく使うワークフロー用の5つのスラッシュコマンド
+- **カスタムコマンド** - よく使うワークフロー用の7つのスラッシュコマンド
 - **包括的なカバレッジ** - コードスタイル、テスト、セキュリティ、Git、デザインパターン、フロントエンド
 - **マルチ言語対応** - TypeScript/JavaScript、Dart/Flutter、Godot/GDScript
 
@@ -172,7 +188,9 @@ claude-starter-kit/
     │   ├── frontend-design.md # タイポグラフィ、カラー、アニメーション
     │   ├── dart-flutter.md    # Dart & Flutter ベストプラクティス
     │   └── godot.md           # Godot & GDScript 規約
-    └── commands/              # スラッシュコマンド（5ファイル）
+    └── commands/              # スラッシュコマンド（7ファイル）
+        ├── new-project.md     # /project:new-project（セットアップウィザード）
+        ├── new-project-ja.md  # /project:new-project-ja（日本語版）
         ├── review.md          # /project:review
         ├── fix-issue.md       # /project:fix-issue
         ├── refactor.md        # /project:refactor
@@ -197,6 +215,8 @@ claude-starter-kit/
 
 | コマンド | 用途 |
 |---------|------|
+| `/project:new-project` | **対話型セットアップ** - 質問→要件収集→プロジェクト構築 |
+| `/project:new-project-ja` | 上記の日本語版 |
 | `/project:review` | コードレビュー（品質・セキュリティ・テスト） |
 | `/project:fix-issue` | GitHubイシューの分析と修正 |
 | `/project:refactor` | リファクタリングガイド |
@@ -205,10 +225,22 @@ claude-starter-kit/
 
 ## クイックスタート
 
-1. **`.claude/` フォルダをプロジェクトにコピー**
-2. **`CLAUDE.md` をカスタマイズ** - コマンド、構造、注意事項を更新
-3. **不要なルールを削除** - 使わないファイルは削除
-4. **`#` ショートカットを活用** - セッション中に指示を追加
+**方法 A: セットアップウィザードを使う（推奨）**
+
+```bash
+cd your-project
+claude
+> /project:new-project-ja
+```
+
+ウィザードが質問しながら、自動でセットアップしてくれます。
+
+**方法 B: 手動セットアップ**
+
+1. `.claude/` フォルダをプロジェクトにコピー
+2. `CLAUDE.md` をカスタマイズ - コマンド、構造、注意事項を更新
+3. 不要なルールを削除 - 使わないファイルは削除
+4. `#` ショートカットを活用 - セッション中に指示を追加
 
 ## プロジェクト開始フロー（Claude Code との対話）
 
