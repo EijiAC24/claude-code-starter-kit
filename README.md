@@ -50,7 +50,7 @@ claude-code-starter-kit/
 | `security.md` | `src/**/*` | Secrets management, input validation, XSS/SQLi prevention |
 | `git-workflow.md` | All files | Branch naming, conventional commits, PR templates |
 | `design-patterns.md` | `src/**/*` | Gang of Four patterns with TypeScript examples |
-| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart` | Typography, color systems, animations, components |
+| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart`, `*.gd` | Typography, color systems, animations, components |
 | `dart-flutter.md` | `**/*.dart` | Dart/Flutter naming, async, state management, widgets |
 | `godot.md` | `**/*.gd`, `*.tscn` | GDScript style, signals, nodes, scene organization |
 
@@ -176,7 +176,7 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 |-------------|-----------|
 | **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
 | **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
-| **Godot** | godot, security, git-workflow, design-patterns |
+| **Godot** | godot, security, git-workflow, design-patterns, frontend-design |
 | **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 
 ## Customization Tips
@@ -242,7 +242,7 @@ claude-code-starter-kit/
 | `security.md` | `src/**/*` | シークレット管理、入力検証、XSS/SQLi対策 |
 | `git-workflow.md` | 全ファイル | ブランチ命名、Conventional Commits、PRテンプレート |
 | `design-patterns.md` | `src/**/*` | GoF 23パターンの解説とTypeScript例 |
-| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart` | タイポグラフィ、カラーシステム、アニメーション |
+| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart`, `*.gd` | タイポグラフィ、カラーシステム、アニメーション |
 | `dart-flutter.md` | `**/*.dart` | Dart/Flutter 命名規則、非同期、状態管理、ウィジェット |
 | `godot.md` | `**/*.gd`, `*.tscn` | GDScriptスタイル、シグナル、ノード、シーン構成 |
 
@@ -368,7 +368,7 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 |-----------------|-----------|
 | **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
 | **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
-| **Godot** | godot, security, git-workflow, design-patterns |
+| **Godot** | godot, security, git-workflow, design-patterns, frontend-design |
 | **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 
 ## カスタマイズのヒント

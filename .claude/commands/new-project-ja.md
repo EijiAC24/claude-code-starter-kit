@@ -116,7 +116,7 @@
 - 技術スタックに応じて不要なルールを削除：
   - Web (React/Next.js): code-style, testing, security, git-workflow, design-patterns, frontend-design を残す
   - Flutter: dart-flutter, testing, security, git-workflow, design-patterns, frontend-design を残す
-  - Godot: godot, security, git-workflow, design-patterns を残す
+  - Godot: godot, security, git-workflow, design-patterns, frontend-design を残す
   - Node.js API: code-style, testing, security, git-workflow, design-patterns を残す
 
 ### ステップ 2: CLAUDE.md 作成

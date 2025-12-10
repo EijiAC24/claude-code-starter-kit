@@ -1,10 +1,10 @@
 ---
-paths: src/**/*.{tsx,jsx}, **/*.css, **/*.scss, **/*.module.css, **/*.dart
+paths: src/**/*.{tsx,jsx}, **/*.css, **/*.scss, **/*.module.css, **/*.dart, **/*.gd, **/*.tscn
 ---
 
 # Frontend Design Guidelines
 
-> Universal design principles for Web (React), Flutter, and other UI frameworks. Based on modern design systems and accessibility standards for 2025.
+> Universal design principles for Web (React), Flutter, Godot, and other UI frameworks. Based on modern design systems and accessibility standards for 2025.
 
 ## Design Philosophy
 
@@ -758,6 +758,133 @@ class ResponsiveBuilder extends StatelessWidget {
     );
   }
 }
+```
+
+### Godot Patterns
+
+#### Theme Resource
+```gdscript
+# res://ui/theme/ui_theme.gd
+class_name UITheme
+extends Resource
+
+# Typography Scale (1.25 ratio)
+const TEXT_XS := 12
+const TEXT_SM := 14
+const TEXT_BASE := 16
+const TEXT_LG := 18
+const TEXT_XL := 20
+const TEXT_2XL := 24
+const TEXT_3XL := 30
+const TEXT_4XL := 36
+
+# Spacing (4px base)
+const SPACE_1 := 4
+const SPACE_2 := 8
+const SPACE_3 := 12
+const SPACE_4 := 16
+const SPACE_6 := 24
+const SPACE_8 := 32
+
+# Animation Durations
+const DURATION_FAST := 0.15
+const DURATION_NORMAL := 0.25
+const DURATION_SLOW := 0.4
+
+# Colors
+const COLOR_PRIMARY := Color("#2563eb")
+const COLOR_SUCCESS := Color("#16a34a")
+const COLOR_WARNING := Color("#ca8a04")
+const COLOR_ERROR := Color("#dc2626")
+const COLOR_GRAY_50 := Color("#f8fafc")
+const COLOR_GRAY_900 := Color("#0f172a")
+```
+
+#### Accessible Button
+```gdscript
+# res://ui/components/ui_button.gd
+class_name UIButton
+extends Button
+
+@export var min_touch_size := Vector2(44, 44)
+
+func _ready() -> void:
+	custom_minimum_size = min_touch_size
+	focus_mode = Control.FOCUS_ALL  # Keyboard navigation
+
+func _gui_input(event: InputEvent) -> void:
+	# Support gamepad/keyboard confirmation
+	if event.is_action_pressed("ui_accept"):
+		pressed.emit()
+```
+
+#### Animated Panel
+```gdscript
+# res://ui/components/animated_panel.gd
+class_name AnimatedPanel
+extends PanelContainer
+
+@export var fade_duration := 0.25
+@export var slide_offset := Vector2(0, 8)
+
+func show_animated() -> void:
+	modulate.a = 0
+	position += slide_offset
+
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel(true)
+	tween.tween_property(self, "modulate:a", 1.0, fade_duration)
+	tween.tween_property(self, "position", position - slide_offset, fade_duration)
+
+	show()
+
+func hide_animated() -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "modulate:a", 0.0, fade_duration)
+	tween.tween_callback(hide)
+```
+
+#### Responsive Container
+```gdscript
+# res://ui/components/responsive_container.gd
+class_name ResponsiveContainer
+extends Container
+
+enum Layout { MOBILE, TABLET, DESKTOP }
+
+const BREAKPOINT_SM := 640
+const BREAKPOINT_MD := 768
+const BREAKPOINT_LG := 1024
+
+signal layout_changed(layout: Layout)
+
+var current_layout := Layout.MOBILE
+
+func _ready() -> void:
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
+	_update_layout()
+
+func _on_viewport_size_changed() -> void:
+	_update_layout()
+
+func _update_layout() -> void:
+	var width := get_viewport_rect().size.x
+	var new_layout: Layout
+
+	if width >= BREAKPOINT_LG:
+		new_layout = Layout.DESKTOP
+	elif width >= BREAKPOINT_MD:
+		new_layout = Layout.TABLET
+	else:
+		new_layout = Layout.MOBILE
+
+	if new_layout != current_layout:
+		current_layout = new_layout
+		layout_changed.emit(current_layout)
 ```
 
 ---
