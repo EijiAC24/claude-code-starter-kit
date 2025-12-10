@@ -68,22 +68,37 @@ claude-code-starter-kit/
 
 ## Quick Start
 
-**Option A: Use the setup wizard (Recommended)**
+### Step 1: Clone this repo
 
 ```bash
-cd your-project
+git clone https://github.com/EijiAC24/claude-code-starter-kit.git
+cd claude-code-starter-kit
+```
+
+### Step 2: Start the setup wizard
+
+```bash
 claude
 > /project:new-project
 ```
 
-The wizard will ask you questions about your project and set everything up automatically.
+The wizard will:
+1. Ask about your project (spec, tech stack, scope)
+2. Copy `.claude/` to your project folder
+3. Remove unnecessary rules based on your stack
+4. Configure CLAUDE.md for your project
 
-**Option B: Manual setup**
+### Alternative: Manual setup
 
-1. Copy `.claude/` folder to your project
-2. Customize `CLAUDE.md` - Update commands, structure, notes
-3. Remove unused rules - Delete files you don't need
-4. Use `#` shortcut - Add instructions during sessions
+```bash
+# Copy .claude/ folder to your project
+cp -r claude-code-starter-kit/.claude your-project/.claude
+
+# Then customize
+# 1. Edit CLAUDE.md for your project
+# 2. Delete unused rules from .claude/rules/
+# 3. Use # shortcut during sessions to add notes
+```
 
 ## Project Setup Flow (with Claude Code)
 
@@ -225,22 +240,37 @@ claude-code-starter-kit/
 
 ## クイックスタート
 
-**方法 A: セットアップウィザードを使う（推奨）**
+### ステップ 1: このリポをクローン
 
 ```bash
-cd your-project
+git clone https://github.com/EijiAC24/claude-code-starter-kit.git
+cd claude-code-starter-kit
+```
+
+### ステップ 2: セットアップウィザードを起動
+
+```bash
 claude
 > /project:new-project-ja
 ```
 
-ウィザードが質問しながら、自動でセットアップしてくれます。
+ウィザードが:
+1. プロジェクトについて質問（仕様、技術スタック、規模）
+2. `.claude/` をプロジェクトフォルダにコピー
+3. スタックに合わせて不要なルールを削除
+4. CLAUDE.md をプロジェクト用に設定
 
-**方法 B: 手動セットアップ**
+### 別の方法: 手動セットアップ
 
-1. `.claude/` フォルダをプロジェクトにコピー
-2. `CLAUDE.md` をカスタマイズ - コマンド、構造、注意事項を更新
-3. 不要なルールを削除 - 使わないファイルは削除
-4. `#` ショートカットを活用 - セッション中に指示を追加
+```bash
+# .claude/ フォルダをプロジェクトにコピー
+cp -r claude-code-starter-kit/.claude your-project/.claude
+
+# その後カスタマイズ
+# 1. CLAUDE.md をプロジェクト用に編集
+# 2. .claude/rules/ から不要なルールを削除
+# 3. セッション中に # ショートカットでメモ追加
+```
 
 ## プロジェクト開始フロー（Claude Code との対話）
 
