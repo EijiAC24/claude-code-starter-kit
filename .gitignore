@@ -1,0 +1,91 @@
+# ================================
+# Claude Code Local Settings
+# ================================
+# Personal settings (not shared with team)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# ================================
+# Environment & Secrets
+# ================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials.json
+
+# ================================
+# Dependencies
+# ================================
+node_modules/
+vendor/
+.pnp/
+.pnp.js
+
+# ================================
+# Build Output
+# ================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+*.tsbuildinfo
+
+# ================================
+# IDE & Editor
+# ================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ================================
+# OS Files
+# ================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.lnk
+
+# ================================
+# Logs & Debug
+# ================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+debug.log
+
+# ================================
+# Test & Coverage
+# ================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ================================
+# Cache
+# ================================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tscache/
+
+# ================================
+# Temporary Files
+# ================================
+tmp/
+temp/
+*.tmp
+*.temp
