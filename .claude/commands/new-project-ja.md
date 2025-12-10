@@ -144,6 +144,56 @@
 - コア依存関係をインストール
 - 設定ファイルをセットアップ
 
+### ステップ 5: Git セットアップ & 初回 Push
+
+ユーザーに確認：
+
+```
+Git をセットアップしてリモートリポジトリに push しますか？
+
+1. はい、GitHub/GitLab の URL があります
+2. はい、GitHub に新しいプライベートリポジトリを作成（gh CLI が必要）
+3. いいえ、今はスキップ
+```
+
+**オプション 1: URL がある場合**
+- リポジトリ URL を聞く
+- 実行：
+  ```bash
+  git init
+  git add .
+  git commit -m "Initial commit: project setup"
+  git remote add origin <URL>
+  git branch -M main
+  git push -u origin main
+  ```
+
+**オプション 2: 新規プライベートリポジトリ作成**
+- `gh` CLI が使えるか確認（`gh --version`）
+- プロジェクト名からリポジトリ名を自動生成（kebab-case、小文字）
+  - 例: 「タスク管理アプリ」→ `task-management-app`
+- プロジェクト概要から短い説明文を自動生成（1行、100文字程度）
+  - 例: "A mobile app for managing daily tasks with reminders and categories"
+- 提案した名前と説明を表示して確認：
+  ```
+  プライベートリポジトリを作成します:
+  - 名前: task-management-app
+  - 説明: A mobile app for managing daily tasks with reminders and categories
+
+  これでOKですか？（変更があれば教えてください）
+  ```
+- 実行：
+  ```bash
+  git init
+  git add .
+  git commit -m "Initial commit: project setup"
+  gh repo create <repo-name> --private --description "<description>" --source=. --remote=origin --push
+  ```
+
+**オプション 3: スキップ**
+- ローカルバージョン管理用に `git init` だけ実行
+- 後で push できることを伝える
+
 ## フェーズ 4: 計画立案
 
 セットアップ完了後、次を確認：

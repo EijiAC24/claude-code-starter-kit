@@ -144,6 +144,56 @@ Based on tech stack, create appropriate folders:
 - Install core dependencies
 - Setup configuration files
 
+### Step 5: Git Setup & Initial Push
+
+Ask the user:
+
+```
+Do you want to set up Git and push to a remote repository?
+
+1. Yes, I have a GitHub/GitLab URL ready
+2. Yes, create a new private repository on GitHub (requires gh CLI)
+3. No, skip for now
+```
+
+**Option 1: User has a URL**
+- Ask for the repository URL
+- Run:
+  ```bash
+  git init
+  git add .
+  git commit -m "Initial commit: project setup"
+  git remote add origin <URL>
+  git branch -M main
+  git push -u origin main
+  ```
+
+**Option 2: Create new private repo**
+- Check if `gh` CLI is available (`gh --version`)
+- Generate a repository name from the project name (kebab-case, lowercase)
+  - Example: "Task Management App" → `task-management-app`
+- Generate a short description from the project overview (1 line, ~100 chars max)
+  - Example: "A mobile app for managing daily tasks with reminders and categories"
+- Show the proposed name and description, ask for confirmation:
+  ```
+  I'll create a private repository:
+  - Name: task-management-app
+  - Description: A mobile app for managing daily tasks with reminders and categories
+
+  Is this OK? (or let me know what to change)
+  ```
+- Run:
+  ```bash
+  git init
+  git add .
+  git commit -m "Initial commit: project setup"
+  gh repo create <repo-name> --private --description "<description>" --source=. --remote=origin --push
+  ```
+
+**Option 3: Skip**
+- Just run `git init` for local version control
+- Inform user they can push later
+
 ## Phase 4: Planning
 
 After setup is complete, ask:
