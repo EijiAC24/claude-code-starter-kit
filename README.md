@@ -69,75 +69,64 @@ claude-starter-kit/
 3. **Remove unused rules** - Delete files you don't need
 4. **Use `#` shortcut** - Add instructions during sessions
 
-## Project Setup Flow
+## Project Setup Flow (with Claude Code)
 
-A step-by-step guide for starting new projects with your spec document.
+Start a new project by chatting with Claude Code. Just prepare your spec document and follow this conversation flow.
 
-### Step 1: Copy Starter Kit
+### Prerequisites
 
-```bash
-cp -r claude-starter-kit/.claude your-project/.claude
-```
+- Your spec document ready (even a simple one-pager is fine)
+- Empty project folder created
 
-### Step 2: Remove Unused Rules
+### Conversation Flow
 
-Keep only the rules you need based on your project type:
-
-| Project Type | Keep | Remove |
-|-------------|------|--------|
-| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design | dart-flutter, godot |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns | code-style, frontend-design, godot |
-| **Godot** | godot, security, git-workflow, design-patterns | code-style, testing, dart-flutter, frontend-design |
-
-### Step 3: Place Your Spec Document
+**Step 1: Setup starter kit**
 
 ```
-your-project/
-├── .claude/
-│   └── CLAUDE.md
-├── docs/
-│   └── spec.md    ← Place your spec here
-└── ...
+I want to start a new project. Here's my spec:
+[Paste your spec or attach file]
+
+Please:
+1. Copy claude-starter-kit to this project
+2. Remove unnecessary rules based on my tech stack
+3. Configure CLAUDE.md for this project
 ```
 
-Add reference in `CLAUDE.md`:
-
-```markdown
-## Key Files
-
-- @docs/spec.md - Project specification
-```
-
-### Step 4: Customize CLAUDE.md
-
-Add project-specific notes:
-
-```markdown
-## Project-Specific Notes
-
-- App: Task management mobile app
-- Stack: Flutter + Supabase + Riverpod
-- Auth: Supabase Auth (Google OAuth)
-- Deploy: App Store / Google Play
-```
-
-### Step 5: Start with Claude Code
-
-```bash
-cd your-project
-claude
-```
-
-**Recommended first prompt:**
+**Step 2: Plan the architecture**
 
 ```
-Read @docs/spec.md and help me:
-
-1. Confirm the tech stack
-2. Design directory structure
-3. Prioritize features (MVP → Full)
-4. Identify the first files to create
+Based on the spec, help me design:
+1. Directory structure
+2. Key files and their responsibilities
+3. Data models / schemas
+4. External services needed
 ```
+
+**Step 3: Prioritize and create MVP plan**
+
+```
+Let's prioritize features:
+1. What's the minimum for MVP?
+2. What can wait for v2?
+3. Create a task list for MVP implementation
+```
+
+**Step 4: Start implementation**
+
+```
+Let's start building. Begin with [feature/component name].
+```
+
+### Rules by Project Type
+
+Claude will automatically select the right rules, but here's a reference:
+
+| Project Type | Rules Used |
+|-------------|-----------|
+| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
+| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns |
+| **Godot** | godot, security, git-workflow, design-patterns |
+| **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 
 ## Customization Tips
 
@@ -221,75 +210,64 @@ claude-starter-kit/
 3. **不要なルールを削除** - 使わないファイルは削除
 4. **`#` ショートカットを活用** - セッション中に指示を追加
 
-## プロジェクト開始フロー
+## プロジェクト開始フロー（Claude Code との対話）
 
-仕様書をもとに新規プロジェクトを始める手順です。
+Claude Code と会話しながら新規プロジェクトを始めます。仕様書を用意して、以下の流れで進めてください。
 
-### ステップ 1: スターターキットをコピー
+### 事前準備
 
-```bash
-cp -r claude-starter-kit/.claude your-project/.claude
-```
+- 仕様書（ペライチでもOK）
+- 空のプロジェクトフォルダ
 
-### ステップ 2: 不要なルールを削除
+### 会話フロー
 
-プロジェクトの種類に応じて必要なルールだけを残す：
-
-| プロジェクト種別 | 残す | 削除 |
-|-----------------|------|------|
-| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design | dart-flutter, godot |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns | code-style, frontend-design, godot |
-| **Godot** | godot, security, git-workflow, design-patterns | code-style, testing, dart-flutter, frontend-design |
-
-### ステップ 3: 仕様書を配置
+**ステップ 1: スターターキットのセットアップ**
 
 ```
-your-project/
-├── .claude/
-│   └── CLAUDE.md
-├── docs/
-│   └── spec.md    ← 仕様書をここに置く
-└── ...
+新しいプロジェクトを始めたい。仕様書はこれ：
+[仕様書を貼り付け or ファイル添付]
+
+以下をやって：
+1. claude-starter-kit をこのプロジェクトにコピー
+2. 技術スタックに合わせて不要なルールを削除
+3. CLAUDE.md をこのプロジェクト用に設定
 ```
 
-`CLAUDE.md` に参照を追加：
-
-```markdown
-## Key Files
-
-- @docs/spec.md - プロジェクト仕様書
-```
-
-### ステップ 4: CLAUDE.md をカスタマイズ
-
-プロジェクト固有の情報を追加：
-
-```markdown
-## Project-Specific Notes
-
-- アプリ: タスク管理モバイルアプリ
-- 技術スタック: Flutter + Supabase + Riverpod
-- 認証: Supabase Auth (Google OAuth)
-- デプロイ: App Store / Google Play
-```
-
-### ステップ 5: Claude Code で開発開始
-
-```bash
-cd your-project
-claude
-```
-
-**最初のプロンプト例：**
+**ステップ 2: アーキテクチャ設計**
 
 ```
-@docs/spec.md を読んで、以下を整理して：
-
-1. 技術スタックの確認
-2. ディレクトリ構成の設計
-3. 機能の優先順位（MVP → フル機能）
-4. 最初に作成すべきファイル
+仕様書をもとに設計して：
+1. ディレクトリ構成
+2. 主要ファイルと責務
+3. データモデル / スキーマ
+4. 必要な外部サービス
 ```
+
+**ステップ 3: MVP の優先順位決め**
+
+```
+機能の優先順位を決めよう：
+1. MVP に必要な最小限は？
+2. v2 以降に回せるものは？
+3. MVP 実装のタスクリストを作って
+```
+
+**ステップ 4: 実装開始**
+
+```
+では作り始めよう。[機能/コンポーネント名] から始めて。
+```
+
+### プロジェクト種別ごとのルール
+
+Claude が自動で適切なルールを選択しますが、参考までに：
+
+| プロジェクト種別 | 使用ルール |
+|-----------------|-----------|
+| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
+| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns |
+| **Godot** | godot, security, git-workflow, design-patterns |
+| **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
 
 ## カスタマイズのヒント
 
