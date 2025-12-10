@@ -544,3 +544,49 @@ Add a changelog section to track major changes:
 - Leave outdated information in CLAUDE.md
 - Implement changed specs without updating docs
 - Let documentation drift from reality
+
+---
+
+## Push Timing Guidelines
+
+Push to remote repository at natural breakpoints to keep the remote up to date.
+
+### When to Push
+
+| Timing | Description |
+|--------|-------------|
+| **Feature completion** | After new feature is working and verified |
+| **Bug fix completion** | After fix is verified and tests pass |
+| **Refactoring completion** | After code cleanup is done |
+| **Related commits grouped** | When logical unit of work is complete |
+| **End of work session** | Before finishing a long work session |
+
+### Pre-Push Checklist
+
+```bash
+# 1. Verify tests pass
+npm run test
+
+# 2. Verify build succeeds
+npm run build
+
+# 3. Verify no lint errors
+npm run lint
+
+# 4. Push to remote
+git push origin <branch-name>
+```
+
+### Push Best Practices
+
+**MUST DO:**
+- Push after completing significant implementations
+- Verify tests and build before pushing
+- Push regularly at natural breakpoints
+- Keep local-remote diff small
+
+**MUST NOT:**
+- Push broken code
+- Accumulate commits locally for too long without pushing
+- Push without running tests
+- Force push to main/master branch
