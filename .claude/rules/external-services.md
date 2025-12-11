@@ -814,6 +814,55 @@ Provides design context for code generation.
 
 ---
 
+## Research & Community
+
+### Reddit MCP
+
+技術的な問題のトラブルシューティングやコミュニティの知見を検索。APIキー不要で即座に使用可能。
+
+```json
+{
+  "mcpServers": {
+    "reddit": {
+      "command": "npx",
+      "args": ["-y", "reddit-mcp-buddy"]
+    }
+  }
+}
+```
+
+**Available Tools:**
+
+| Tool | Description |
+|------|-------------|
+| `browse_subreddit` | サブレディットの投稿を閲覧（ソート機能付き） |
+| `search_reddit` | Reddit全体を検索（フィルタリング対応） |
+| `get_post_details` | 投稿と全コメントを取得 |
+| `user_analysis` | ユーザープロフィール分析 |
+| `reddit_explain` | Reddit用語の説明 |
+
+**Rate Limits:**
+
+| Mode | Rate Limit | Required |
+|------|------------|----------|
+| Anonymous | 10 req/min | None |
+| App-only | 60 req/min | Client ID + Secret |
+| Authenticated | 100 req/min | Full credentials |
+
+**Use Cases:**
+- 技術的なエラーメッセージの解決策を検索
+- ライブラリやフレームワークの評判・比較
+- 実装パターンやベストプラクティスの調査
+- トラブルシューティングのヒント収集
+
+**Useful Subreddits:**
+- r/programming, r/webdev, r/typescript
+- r/reactjs, r/nextjs, r/sveltejs
+- r/node, r/golang, r/rust
+- r/gamedev, r/godot, r/flutter
+
+---
+
 ## Utility MCP Servers (Official Reference)
 
 Anthropic公式のリファレンス実装。
@@ -919,6 +968,76 @@ Web content retrieval.
 
 ---
 
+## Automation
+
+### n8n MCP
+
+n8nワークフロー自動化のMCPサーバー。543ノード、2,709テンプレートへのアクセス。
+
+```json
+{
+  "mcpServers": {
+    "n8n-mcp": {
+      "command": "npx",
+      "args": ["n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error"
+      }
+    }
+  }
+}
+```
+
+**注意:** `MCP_MODE=stdio`は必須（JSONパースエラー防止）
+
+**Available Tools:**
+
+| Tool | Description |
+|------|-------------|
+| `search_nodes` | ノード全文検索 |
+| `get_node` | ノード情報取得（詳細度選択可） |
+| `validate_node` | ノード設定検証 |
+| `validate_workflow` | ワークフロー検証 |
+| `search_templates` | テンプレート検索 |
+| `get_template` | テンプレート取得 |
+
+**n8n Instance Management（API認証必須）:**
+- ワークフロー操作：作成・更新・削除・検証
+- 実行管理：テスト実行・ログ取得
+- システム監視：ヘルスチェック
+
+**Alternative: Cloud Hosted**
+- [dashboard.n8n-mcp.com](https://dashboard.n8n-mcp.com) - 無料枠1日100呼び出し
+
+### n8n Skills for Claude Code
+
+n8n-mcpを効果的に使うためのClaude Codeスキルセット。
+
+**Install:**
+```bash
+# Clone to .claude/commands/
+git clone https://github.com/czlonkowski/n8n-skills.git .claude/commands/n8n
+```
+
+**Available Skills (7):**
+
+| Skill | Description |
+|-------|-------------|
+| `n8n-mcp-tools` | MCPツール効率的利用ガイド（優先度最高） |
+| `n8n-expression` | 式記法とパターン教育 |
+| `n8n-workflow-patterns` | 5つの実証済みアーキテクチャパターン |
+| `n8n-validation` | 検証エラー解釈と修正支援 |
+| `n8n-node-config` | 操作別のノード設定ガイダンス |
+| `n8n-code-js` | Code ノードでのJS活用法 |
+| `n8n-code-python` | Code ノードでのPython利用 |
+
+**Best Practices:**
+- 本番ワークフロー直編集禁止、開発環境で検証後に展開
+- n8n-mcpとn8n-skillsをセットで使用すると効果的
+
+---
+
 ## Full MCP Configuration Template
 
 ```json
@@ -978,6 +1097,19 @@ Web content retrieval.
       "env": { "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}" }
     },
 
+    // Research & Community
+    "reddit": {
+      "command": "npx",
+      "args": ["-y", "reddit-mcp-buddy"]
+    },
+
+    // Automation
+    "n8n-mcp": {
+      "command": "npx",
+      "args": ["n8n-mcp"],
+      "env": { "MCP_MODE": "stdio", "LOG_LEVEL": "error" }
+    },
+
     // Utilities
     "filesystem": {
       "command": "npx",
@@ -1022,4 +1154,33 @@ Web content retrieval.
 - [Notion MCP](https://developers.notion.com/docs/mcp)
 - [Atlassian MCP](https://www.atlassian.com/blog/announcements/remote-mcp-server)
 - [Figma MCP](https://github.com/figma/mcp-server-guide)
+- [Reddit MCP Buddy](https://github.com/karanb192/reddit-mcp-buddy)
+- [n8n MCP](https://github.com/czlonkowski/n8n-mcp)
+- [n8n Skills for Claude Code](https://github.com/czlonkowski/n8n-skills)
 - [MCP Official Examples](https://modelcontextprotocol.io/examples)
+
+---
+
+## LLM APIs
+
+API reference documentation for major LLM providers.
+
+| Provider | Docs | SDK Install |
+|----------|------|-------------|
+| OpenAI | https://platform.openai.com/docs | `npm i openai` |
+| Anthropic | https://docs.anthropic.com/en/api | `npm i @anthropic-ai/sdk` |
+| Google Gemini | https://ai.google.dev/docs | `npm i @google/generative-ai` |
+| OpenRouter | https://openrouter.ai/docs | `npm i openrouter` |
+| Replicate | https://replicate.com/docs | `npm i replicate` |
+| Cohere | https://docs.cohere.com | `npm i cohere-ai` |
+| Mistral | https://docs.mistral.ai | `npm i @mistralai/mistralai` |
+| Groq | https://console.groq.com/docs | `npm i groq-sdk` |
+| Together AI | https://docs.together.ai | `npm i together-ai` |
+
+### Best Practices
+
+- Store API keys in environment variables (`OPENAI_API_KEY`, etc.)
+- Use streaming for better UX on long responses
+- Implement retry logic with exponential backoff
+- Monitor rate limits and usage quotas
+- Use structured outputs (JSON mode) when available
