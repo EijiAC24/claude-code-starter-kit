@@ -861,6 +861,57 @@ Provides design context for code generation.
 - r/node, r/golang, r/rust
 - r/gamedev, r/godot, r/flutter
 
+### Context7 MCP
+
+LLMに最新のライブラリドキュメントを提供。古いトレーニングデータに基づくハルシネーションを防止。
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    }
+  }
+}
+```
+
+**Or use remote server (no local install):**
+```bash
+# Claude Code
+claude mcp add --transport http context7 https://mcp.context7.com/mcp
+```
+
+**Available Tools:**
+
+| Tool | Description |
+|------|-------------|
+| `resolve-library-id` | ライブラリ名をContext7形式に変換 |
+| `get-library-docs` | 指定ライブラリの最新ドキュメント取得 |
+
+**Why Context7:**
+
+| 問題 | 解決 |
+|------|------|
+| 古いAPIの提案 | 最新バージョンのドキュメントを参照 |
+| 存在しないAPIのハルシネーション | 実際のドキュメントに基づいた回答 |
+| バージョン違いのコード | バージョン固有のドキュメント提供 |
+
+**Usage:**
+```
+# プロンプトに「use context7」を追加するだけ
+Next.jsでAPIルート作って use context7
+```
+
+**Rate Limits:**
+- 無料: 基本レート制限
+- APIキー付き: 高レート制限
+
+**Best Practices:**
+- 新しいライブラリを使う時は必ず使用
+- フレームワークのアップデート後に使用
+- 不明なAPIがある時に使用
+
 ---
 
 ## Utility MCP Servers (Official Reference)
@@ -1102,6 +1153,10 @@ git clone https://github.com/czlonkowski/n8n-skills.git .claude/commands/n8n
       "command": "npx",
       "args": ["-y", "reddit-mcp-buddy"]
     },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
 
     // Automation
     "n8n-mcp": {
@@ -1157,6 +1212,7 @@ git clone https://github.com/czlonkowski/n8n-skills.git .claude/commands/n8n
 - [Reddit MCP Buddy](https://github.com/karanb192/reddit-mcp-buddy)
 - [n8n MCP](https://github.com/czlonkowski/n8n-mcp)
 - [n8n Skills for Claude Code](https://github.com/czlonkowski/n8n-skills)
+- [Context7 MCP](https://github.com/upstash/context7)
 - [MCP Official Examples](https://modelcontextprotocol.io/examples)
 
 ---
