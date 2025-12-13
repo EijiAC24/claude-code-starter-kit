@@ -4,26 +4,28 @@ You are starting a new project setup wizard. Guide the user through project init
 
 ## Phase 1: Gather Information
 
-First, ask the user for their spec document or project description:
+First, ask the user how they want to start:
 
 ```
 What are you building?
 
-Please share your spec (any of these works):
+How would you like to start?
 
-1. File path (recommended)
-   e.g., C:\Users\you\Documents\spec.md
-   e.g., /Users/you/Documents/spec.md
+1. I have a spec document
+   → Share file path or paste text
 
-2. Paste text directly
+2. Let's figure it out together (recommended for new ideas)
+   → I'll guide you through key questions with best practices
 
-3. Describe briefly in your own words
+3. Quick start - just describe briefly
+   → For simple projects or prototypes
 
 ※ Long specs are fine - just give me the path and I'll read it all
-※ I'll create a summary version if needed
 ```
 
-### After receiving the spec:
+---
+
+### Option 1: User has a spec
 
 **If file path** → Use Read tool to load it
 
@@ -39,7 +41,7 @@ Please share your spec (any of these works):
 3. **Project Scope** - Prototype, MVP, or production
 4. **Existing Resources** - Design files, APIs, references
 
-### Then, ONLY ask about missing information:
+**Then, ONLY ask about missing information:**
 
 - If tech stack is clear from spec → Don't ask
 - If scope is mentioned → Don't ask
@@ -50,7 +52,180 @@ Please share your spec (any of these works):
 - Scope: MVP ✓
 - Only ask: "Do you have any design files or other resources?"
 
-### Questions to ask ONLY if not in spec:
+→ Skip to **Phase 2: Confirm Understanding**
+
+---
+
+### Option 2: Build spec together (Interactive Mode)
+
+Guide the user through structured questions. Ask ONE question at a time, wait for response, then proceed.
+
+#### Step 1: The Idea
+```
+Let's start with the basics.
+
+What's your project idea?
+- What problem does it solve?
+- Who is it for?
+
+Just describe it in your own words - doesn't need to be polished.
+```
+
+#### Step 2: Core Features
+```
+What are the MUST-HAVE features? (The app doesn't work without these)
+
+List 2-5 core features. For example:
+- "Users can create an account"
+- "Search for nearby restaurants"
+- "Export data to CSV"
+
+Keep it focused - we can add more later.
+```
+
+**Best Practice Tip:** Share with user:
+> Tip: For MVP, aim for 3-5 core features max. The #1 reason projects fail is scope creep. What's the ONE thing this app must do well?
+
+#### Step 3: What NOT to Build
+```
+What's explicitly OUT OF SCOPE for now?
+
+Examples:
+- "No social features for v1"
+- "No mobile app yet, web only"
+- "No payment integration initially"
+
+This helps keep the project focused.
+```
+
+#### Step 4: Tech Stack
+```
+What tech stack do you want to use?
+
+**Web App:**
+- Frontend: React/Next.js, Vue/Nuxt, Svelte
+- Backend: Node.js, Python (FastAPI/Django), Go
+- Database: PostgreSQL, MongoDB, SQLite
+
+**Mobile App:**
+- Cross-platform: Flutter, React Native
+- Native: Swift (iOS), Kotlin (Android)
+
+**Game:**
+- Godot, Unity, Unreal
+
+**Backend-as-a-Service (recommended for solo devs):**
+- Supabase (Postgres + Auth + Storage + Realtime)
+- Firebase (NoSQL + Auth + Hosting)
+
+Not sure? Tell me your constraints (budget, timeline, experience) and I'll recommend.
+```
+
+**Best Practice Tips to share based on user's situation:**
+
+| Situation | Recommendation |
+|-----------|----------------|
+| Solo dev, MVP | BaaS (Supabase/Firebase) - less ops overhead |
+| Learning new stack | Pick ONE new thing, keep rest familiar |
+| Need real-time | Supabase Realtime or Firebase |
+| Complex queries | PostgreSQL (Supabase) over NoSQL |
+| Offline-first mobile | Flutter + local DB (Hive/Isar) |
+| Quick prototype | Next.js + Vercel (instant deploys) |
+
+#### Step 5: Project Scope
+```
+What's the scope of this project?
+
+1. Quick prototype (1-2 weeks, speed > quality)
+   → Skip tests, simple UI, prove the concept
+
+2. MVP for launch (1-2 months)
+   → Core features polished, basic tests, production-ready
+
+3. Production app (ongoing)
+   → Full test coverage, CI/CD, monitoring, scalability
+
+Which fits your goal?
+```
+
+#### Step 6: Existing Resources
+```
+Do you have any existing resources?
+
+- UI designs / mockups / sketches
+- Reference apps to emulate
+- API documentation (if integrating with services)
+- Brand guidelines
+
+If you have image files, share the path and I'll organize them.
+```
+
+#### Step 7: Generate Spec
+
+After gathering all information, generate a spec document:
+
+```markdown
+# [Project Name] Specification
+
+## Overview
+[One paragraph description]
+
+## Problem & Target Users
+- Problem: [What problem does this solve]
+- Target: [Who is this for]
+
+## Core Features (MVP)
+1. [Feature 1]
+2. [Feature 2]
+3. [Feature 3]
+
+## Out of Scope (v1)
+- [What we're NOT building]
+
+## Tech Stack
+| Layer | Technology |
+|-------|------------|
+| Frontend | [Choice] |
+| Backend | [Choice] |
+| Database | [Choice] |
+| Hosting | [Choice] |
+
+## User Stories
+| As a... | I want to... | So that... |
+|---------|--------------|------------|
+| [User type] | [Action] | [Benefit] |
+
+## Project Scope
+- Type: [Prototype/MVP/Production]
+- Timeline: [User's timeline if mentioned]
+
+## Resources
+- [List any provided resources]
+
+---
+Generated: [Date]
+```
+
+Save this to `docs/spec.md` and show the user for confirmation.
+
+---
+
+### Option 3: Quick Start
+
+For simple projects or when user just wants to describe briefly:
+
+```
+Got it! Just tell me:
+1. What you're building (one sentence)
+2. Tech stack (or "recommend something")
+3. Prototype or MVP?
+```
+
+Then extract what you can and fill gaps with sensible defaults.
+
+---
+
+### Questions to ask ONLY if not covered:
 
 **Tech Stack (if unclear):**
 ```

@@ -98,16 +98,44 @@ The `/new-project` wizard guides you through 4 phases:
 
 ### Phase 1: Gather Information
 
-The wizard asks for your spec document:
+The wizard offers 3 ways to start:
 
 ```
 What are you building?
 
-Please share your spec (any of these works):
-1. File path (recommended)  →  C:\Users\you\Documents\spec.md
-2. Paste text directly
-3. Describe briefly
+How would you like to start?
+
+1. I have a spec document
+   → Share file path or paste text
+
+2. Let's figure it out together (recommended for new ideas)
+   → I'll guide you through key questions with best practices
+
+3. Quick start - just describe briefly
+   → For simple projects or prototypes
 ```
+
+**Option 1: Spec document** - Full document is kept (not summarized), placed in `docs/spec.md`
+
+**Option 2: Build together (Interactive Mode)** - Best for new ideas without a formal spec:
+1. **Idea** - What problem? Who is it for?
+2. **Core Features** - 2-5 must-have features
+3. **Out of Scope** - What NOT to build (prevents scope creep)
+4. **Tech Stack** - With situational recommendations
+5. **Project Scope** - Prototype / MVP / Production
+6. **Resources** - Mockups, references, etc.
+7. **Generate Spec** - Auto-creates `docs/spec.md`
+
+Includes best practice tips like:
+> Tip: For MVP, aim for 3-5 core features max. The #1 reason projects fail is scope creep.
+
+| Situation | Recommendation |
+|-----------|----------------|
+| Solo dev, MVP | BaaS (Supabase/Firebase) |
+| Learning new stack | Pick ONE new thing |
+| Quick prototype | Next.js + Vercel |
+
+**Option 3: Quick start** - Just describe in one sentence, pick stack, done.
 
 **What you can provide:**
 - Spec document (any length - full document is kept, not summarized)
@@ -294,16 +322,44 @@ claude
 
 ### フェーズ 1: 情報収集
 
-仕様書を聞かれます：
+3つの始め方から選べます：
 
 ```
 何を作りますか？
 
-仕様書を共有してください（以下のどれでもOK）：
-1. ファイルパス（推奨）→ C:\Users\you\Documents\spec.md
-2. テキストを直接貼り付け
-3. 口頭で簡単に説明
+どのように始めますか？
+
+1. 仕様書がある
+   → ファイルパスを共有 or テキストを貼り付け
+
+2. 一緒に詰めていく（新しいアイデアにおすすめ）
+   → ベストプラクティスを提案しながら質問していきます
+
+3. クイックスタート - 簡単に説明だけ
+   → シンプルなプロジェクトやプロトタイプ向け
 ```
+
+**オプション 1: 仕様書がある** - 全文保持（要約しない）、`docs/spec.md` に配置
+
+**オプション 2: 一緒に詰めていく（インタラクティブモード）** - 仕様書なしの新アイデアに最適：
+1. **アイデア** - 何を解決？誰のため？
+2. **コア機能** - 2〜5個の必須機能
+3. **やらないこと** - 作らないもの（スコープクリープ防止）
+4. **技術スタック** - 状況別おすすめ付き
+5. **プロジェクト規模** - プロトタイプ / MVP / 本番
+6. **リソース** - モックアップ、参考資料など
+7. **仕様書を生成** - `docs/spec.md` を自動作成
+
+ベストプラクティスTip付き：
+> Tip: MVPは3〜5機能に絞る。プロジェクト失敗の最大原因はスコープクリープ。
+
+| 状況 | おすすめ |
+|------|----------|
+| 個人開発、MVP | BaaS (Supabase/Firebase) |
+| 新しいスタックを学びたい | 新しいものは1つだけ |
+| クイックプロトタイプ | Next.js + Vercel |
+
+**オプション 3: クイックスタート** - 一言で説明、スタック選んで完了。
 
 **渡せるもの：**
 - 仕様書（長くてもOK - 全文保持、要約しない）
