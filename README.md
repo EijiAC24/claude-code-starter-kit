@@ -9,6 +9,7 @@ A production-ready starter kit for Claude Code featuring modular rules, pre-conf
 ## Features
 
 - **Modular Rules** - Path-based conditional loading (`.claude/rules/`)
+- **On-Demand Skills** - Keyword-triggered loading (`.claude/skills/`)
 - **Secure Defaults** - Pre-configured permissions to protect secrets and prevent dangerous operations
 - **Custom Commands** - 7 ready-to-use slash commands for common workflows
 - **Comprehensive Coverage** - Code style, testing, security, Git, design patterns, frontend design
@@ -22,15 +23,20 @@ claude-code-starter-kit/
 └── .claude/
     ├── CLAUDE.md              # Main project configuration
     ├── settings.json          # Permissions & environment
-    ├── rules/                 # Modular rules (8 files)
+    ├── rules/                 # Modular rules (auto-loaded by file path)
     │   ├── code-style.md      # Formatting, naming, TypeScript
     │   ├── testing.md         # AAA pattern, coverage, mocking
     │   ├── security.md        # Secrets, validation, OWASP
-    │   ├── git-workflow.md    # Branches, commits, PRs
+    │   ├── git-workflow.md    # Branches, commits, PRs (essentials)
     │   ├── design-patterns.md # GoF patterns with examples
-    │   ├── frontend-design.md # Typography, color, motion
-    │   ├── dart-flutter.md    # Dart & Flutter best practices
-    │   └── godot.md           # Godot & GDScript conventions
+    │   └── frontend-design.md # Typography, color, motion
+    ├── skills/                # Skills (on-demand, keyword-triggered)
+    │   ├── external-services.md  # MCP/CLI config for Supabase, Firebase, etc.
+    │   ├── git-reference.md      # Detailed git commands & troubleshooting
+    │   ├── dart-flutter.md       # Dart & Flutter best practices
+    │   ├── godot.md              # Godot & GDScript conventions
+    │   ├── seo-review.md         # SEO/LLMO/AIO analysis
+    │   └── security-review.md    # OWASP Top 10 security audit
     └── commands/              # Slash commands (7 files)
         ├── new-project.md     # /new-project (Setup wizard)
         ├── new-project-ja.md  # /new-project-ja (日本語版)
@@ -43,16 +49,37 @@ claude-code-starter-kit/
 
 ## Rules Overview
 
+Rules are **auto-loaded** based on file paths. They're always available when working with matching files.
+
 | File | Applies To | Description |
 |------|-----------|-------------|
 | `code-style.md` | `src/**/*.{ts,tsx,js,jsx}` | Naming conventions, imports, TypeScript best practices |
 | `testing.md` | `tests/**`, `*.test.*` | AAA pattern, naming, coverage goals, mocking |
 | `security.md` | `src/**/*` | Secrets management, input validation, XSS/SQLi prevention |
-| `git-workflow.md` | All files | Branch naming, conventional commits, PR templates |
+| `git-workflow.md` | All files | Branch naming, conventional commits, PR basics |
 | `design-patterns.md` | `src/**/*` | Gang of Four patterns with TypeScript examples |
-| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart`, `*.gd` | Typography, color systems, animations, components |
-| `dart-flutter.md` | `**/*.dart` | Dart/Flutter naming, async, state management, widgets |
-| `godot.md` | `**/*.gd`, `*.tscn` | GDScript style, signals, nodes, scene organization |
+| `frontend-design.md` | `*.tsx`, `*.css` | Typography, color systems, animations, components |
+
+## Skills Overview
+
+Skills are **on-demand** - loaded only when you mention trigger keywords. This saves tokens!
+
+| File | Trigger Keywords | Description |
+|------|-----------------|-------------|
+| `external-services.md` | Supabase, Firebase, Stripe, MCP | MCP/CLI config reference |
+| `git-reference.md` | git commands, rebase, hooks | Detailed git commands & troubleshooting |
+| `dart-flutter.md` | Dart, Flutter, Widget | Dart/Flutter style guide |
+| `godot.md` | Godot, GDScript, Node2D | GDScript style guide |
+| `seo-review.md` | SEO, LLMO, AIO | SEO/LLMO/AIO analysis |
+| `security-review.md` | security review, vulnerability | OWASP Top 10 audit |
+
+### Rules vs Skills
+
+| | Rules | Skills |
+|--|-------|--------|
+| **Loading** | Auto (by file path) | On-demand (by keywords) |
+| **Use for** | Always-needed conventions | Reference docs, guides |
+| **Token usage** | Every session | Only when triggered |
 
 ## Slash Commands
 
@@ -204,12 +231,12 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 
 ### Rules by Project Type
 
-| Project Type | Rules Used |
-|-------------|-----------|
-| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
-| **Godot** | godot, security, git-workflow, design-patterns, frontend-design |
-| **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
+| Project Type | Rules (auto-loaded) | Skills (on-demand) |
+|-------------|---------------------|-------------------|
+| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design | external-services, git-reference |
+| **Flutter** | testing, security, git-workflow, design-patterns | dart-flutter, external-services, git-reference |
+| **Godot** | security, git-workflow, design-patterns | godot, git-reference |
+| **Node.js API** | code-style, testing, security, git-workflow, design-patterns | external-services, git-reference |
 
 ## Customization Tips
 
@@ -233,6 +260,7 @@ Claude Code 用の本番環境対応スターターキット。モジュラー�
 ## 特徴
 
 - **モジュラールール** - パスベースの条件付きロード（`.claude/rules/`）
+- **オンデマンドスキル** - キーワードトリガーで読み込み（`.claude/skills/`）
 - **安全なデフォルト設定** - シークレット保護と危険な操作の防止
 - **カスタムコマンド** - よく使うワークフロー用の7つのスラッシュコマンド
 - **包括的なカバレッジ** - コードスタイル、テスト、セキュリティ、Git、デザインパターン、フロントエンド
@@ -246,15 +274,20 @@ claude-code-starter-kit/
 └── .claude/
     ├── CLAUDE.md              # メインプロジェクト設定
     ├── settings.json          # 権限・環境設定
-    ├── rules/                 # モジュラールール（8ファイル）
+    ├── rules/                 # モジュラールール（ファイルパスで自動読込）
     │   ├── code-style.md      # フォーマット、命名規則、TypeScript
     │   ├── testing.md         # AAAパターン、カバレッジ、モック
     │   ├── security.md        # シークレット、バリデーション、OWASP
-    │   ├── git-workflow.md    # ブランチ、コミット、PR
+    │   ├── git-workflow.md    # ブランチ、コミット、PR（基本）
     │   ├── design-patterns.md # GoFパターン（コード例付き）
-    │   ├── frontend-design.md # タイポグラフィ、カラー、アニメーション
-    │   ├── dart-flutter.md    # Dart & Flutter ベストプラクティス
-    │   └── godot.md           # Godot & GDScript 規約
+    │   └── frontend-design.md # タイポグラフィ、カラー、アニメーション
+    ├── skills/                # スキル（キーワードでオンデマンド読込）
+    │   ├── external-services.md  # MCP/CLI設定（Supabase, Firebase等）
+    │   ├── git-reference.md      # Git詳細コマンド＆トラブルシュート
+    │   ├── dart-flutter.md       # Dart & Flutter ベストプラクティス
+    │   ├── godot.md              # Godot & GDScript 規約
+    │   ├── seo-review.md         # SEO/LLMO/AIO 分析
+    │   └── security-review.md    # OWASP Top 10 セキュリティ監査
     └── commands/              # スラッシュコマンド（7ファイル）
         ├── new-project.md     # /new-project（セットアップウィザード）
         ├── new-project-ja.md  # /new-project-ja（日本語版）
@@ -267,16 +300,37 @@ claude-code-starter-kit/
 
 ## ルール一覧
 
+ルールはファイルパスに基づいて**自動読込**されます。
+
 | ファイル | 適用条件 | 内容 |
 |---------|---------|------|
 | `code-style.md` | `src/**/*.{ts,tsx,js,jsx}` | 命名規則、インポート順序、TypeScript規約 |
 | `testing.md` | `tests/**`, `*.test.*` | AAAパターン、命名規則、カバレッジ目標 |
 | `security.md` | `src/**/*` | シークレット管理、入力検証、XSS/SQLi対策 |
-| `git-workflow.md` | 全ファイル | ブランチ命名、Conventional Commits、PRテンプレート |
+| `git-workflow.md` | 全ファイル | ブランチ命名、Conventional Commits、PR基本 |
 | `design-patterns.md` | `src/**/*` | GoF 23パターンの解説とTypeScript例 |
-| `frontend-design.md` | `*.tsx`, `*.css`, `*.dart`, `*.gd` | タイポグラフィ、カラーシステム、アニメーション |
-| `dart-flutter.md` | `**/*.dart` | Dart/Flutter 命名規則、非同期、状態管理、ウィジェット |
-| `godot.md` | `**/*.gd`, `*.tscn` | GDScriptスタイル、シグナル、ノード、シーン構成 |
+| `frontend-design.md` | `*.tsx`, `*.css` | タイポグラフィ、カラーシステム、アニメーション |
+
+## スキル一覧
+
+スキルはキーワードが出た時だけ**オンデマンド読込**。トークン節約！
+
+| ファイル | トリガーキーワード | 内容 |
+|---------|------------------|------|
+| `external-services.md` | Supabase, Firebase, Stripe, MCP | MCP/CLI設定リファレンス |
+| `git-reference.md` | git コマンド, rebase, hooks | Git詳細コマンド＆トラブルシュート |
+| `dart-flutter.md` | Dart, Flutter, Widget | Dart/Flutter スタイルガイド |
+| `godot.md` | Godot, GDScript, Node2D | GDScript スタイルガイド |
+| `seo-review.md` | SEO, LLMO, AIO | SEO/LLMO/AIO 分析 |
+| `security-review.md` | セキュリティレビュー, 脆弱性 | OWASP Top 10 監査 |
+
+### ルール vs スキル
+
+| | ルール | スキル |
+|--|--------|--------|
+| **読込** | 自動（ファイルパス） | オンデマンド（キーワード） |
+| **用途** | 常に必要な規約 | リファレンス、ガイド |
+| **トークン** | 毎セッション消費 | トリガー時のみ |
 
 ## スラッシュコマンド
 
@@ -428,12 +482,12 @@ cp -r claude-code-starter-kit/.claude your-project/.claude
 
 ### プロジェクト種別ごとのルール
 
-| プロジェクト種別 | 使用ルール |
-|-----------------|-----------|
-| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design |
-| **Flutter** | dart-flutter, testing, security, git-workflow, design-patterns, frontend-design |
-| **Godot** | godot, security, git-workflow, design-patterns, frontend-design |
-| **Node.js API** | code-style, testing, security, git-workflow, design-patterns |
+| プロジェクト種別 | ルール（自動読込） | スキル（オンデマンド） |
+|-----------------|-------------------|---------------------|
+| **React/Next.js** | code-style, testing, security, git-workflow, design-patterns, frontend-design | external-services, git-reference |
+| **Flutter** | testing, security, git-workflow, design-patterns | dart-flutter, external-services, git-reference |
+| **Godot** | security, git-workflow, design-patterns | godot, git-reference |
+| **Node.js API** | code-style, testing, security, git-workflow, design-patterns | external-services, git-reference |
 
 ## カスタマイズのヒント
 

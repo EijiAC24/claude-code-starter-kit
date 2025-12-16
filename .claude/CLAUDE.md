@@ -53,10 +53,20 @@ Modular rules auto-load based on file paths:
 | @.claude/rules/security.md | All source files |
 | @.claude/rules/git-workflow.md | All files |
 | @.claude/rules/design-patterns.md | `src/**/*` |
-| @.claude/rules/frontend-design.md | `*.tsx`, `*.css`, `*.dart`, `*.gd` |
-| @.claude/rules/dart-flutter.md | `**/*.dart` |
-| @.claude/rules/godot.md | `**/*.gd`, `*.tscn` |
-| @.claude/rules/external-services.md | When integrating DB, payments, etc. |
+| @.claude/rules/frontend-design.md | `*.tsx`, `*.css` |
+
+## Skills
+
+Interactive skills auto-trigger based on keywords:
+
+| Skill | Trigger Keywords | Description |
+|-------|------------------|-------------|
+| @.claude/skills/seo-review.md | SEO, LLMO, AIO, 検索最適化 | SEO/LLMO/AIOスコア分析 |
+| @.claude/skills/security-review.md | セキュリティ, 脆弱性, レビュー, 監査 | OWASP Top 10セキュリティチェック |
+| @.claude/skills/external-services.md | Supabase, Firebase, Stripe, MCP, 外部サービス | MCP/CLI設定リファレンス |
+| @.claude/skills/git-reference.md | git コマンド, rebase, hooks, gitignore | Git詳細リファレンス |
+| @.claude/skills/dart-flutter.md | Dart, Flutter, Widget, pubspec | Dart/Flutterスタイルガイド |
+| @.claude/skills/godot.md | Godot, GDScript, Node2D, signal | GDScriptスタイルガイド |
 
 ## Workflow
 
